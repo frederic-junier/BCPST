@@ -15,6 +15,10 @@ Professeur référent : M.Lalauze.
 
 * Memento / Cheatsheet :
   - [Memento de Laurent Pointal](https://perso.limsi.fr/pointal/_media/python:cours:mementopython3.pdf)
+  
+ * Interpréteurs en ligne :
+  - [repl.it](https://repl.it/languages/python3)
+  -[Pythontutor](http://pythontutor.com/)  : permet de visualiser l'évolution des variables
 
 ## TP
 
