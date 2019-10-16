@@ -8,6 +8,7 @@ Professeur référent : M.Lalauze.
 
 * TP 1 :
   - [énoncé version pdf](TP1/01_Premiers_pas.pdf)
+  - [corrigé version python](TP1/TP1_BCPST_852.py)
   - [corrigé version pdf](TP1/TP1_BCPST_852.pdf)
   - [corrigé version html](TP1/TP1_BCPST_852.html)
   - [corrigé version notebook Jupyter](TP1/TP1_BCPST_852.ipynb)
