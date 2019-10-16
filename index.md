@@ -13,7 +13,7 @@ Professeur référent : M.Lalauze.
   - [corrigé version html](TP1/TP1_BCPST_852.html)
   - [corrigé version notebook Jupyter](TP1/TP1_BCPST_852.ipynb)
   
-  * TP 2 :
+* TP 2 :
   - [énoncé version pdf](TP2/03_Tests_Boucles.pdf)
   - [corrigé version python](TP2/BCPST_852_TP2.py)
   - [corrigé version pdf](TP2/BCPST_852_TP2.pdf)
