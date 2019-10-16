@@ -6,6 +6,18 @@ Les sujets de TP ont été écrits par M. Lalauze.
 
 Professeur référent : M.Lalauze.
 
+## Ressources Python :
+
+* Installation de Python :
+  - [Installation standard avec Idle](https://www.python.org/downloads/)
+  - [Installation Anaconda + Pyzo](https://pyzo.org/start.html)
+  - [Installation Thonny (debugger très pratique)](https://thonny.org/)
+
+* Memento / Cheatsheet :
+  - [Memento de Laurent Pointal](https://perso.limsi.fr/pointal/_media/python:cours:mementopython3.pdf)
+
+## TP
+
 * TP 1 :
   - [énoncé version pdf](TP1/01_Premiers_pas.pdf)
   - [corrigé version python](TP1/TP1_BCPST_852.py)
