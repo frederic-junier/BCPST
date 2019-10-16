@@ -18,7 +18,7 @@ Professeur référent : M.Lalauze.
   
  * Interpréteurs en ligne :
   - [repl.it](https://repl.it/languages/python3)
-  -[Pythontutor](http://pythontutor.com/)  : permet de visualiser l'évolution des variables
+  - [Pythontutor](http://pythontutor.com/)  : permet de visualiser l'évolution des variables
 
 ## TP
 
