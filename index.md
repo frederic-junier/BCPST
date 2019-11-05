@@ -42,3 +42,9 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version html](TP2/BCPST_852_TP2.html)
   - [corrigé version notebook Jupyter](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP2/BCPST_852_TP2.ipynb)
 
+* TP 3 :
+  - [énoncé version pdf](TP3/I05_Listes.pdf)
+  - [corrigé version python](TP3/TP_Listes_852_2016-2017.py)
+  - [corrigé version pdf](TP3/TP_Listes_852_2016-2017.pdf)
+  - [corrigé version html](TP3/TP_Listes_852_2016-2017.html
+  - [corrigé version notebook Jupyter](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP3/TP_Listes_852_2016-2017.ipynb)
