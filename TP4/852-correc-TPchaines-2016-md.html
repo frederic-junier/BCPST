@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="852 - M.Lalauze - M.Junier" />
+  <title>Corrigé du TP Python sur les Chaines de caractères</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Corrigé du TP Python sur les Chaines de caractères</h1>
+  <p class="author">
+852 - M.Lalauze - M.Junier
+  </p>
+</div>
+<div class="slide section level1">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<div id="exercice-1" class="slide section level1">
+<h1>Exercice 1</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> question1():
+    a <span class="op">=</span> <span class="st">&quot;10&quot;</span>
+    b <span class="op">=</span> <span class="st">&quot;11&quot;</span>
+    c <span class="op">=</span> a <span class="op">+</span> b
+    <span class="bu">print</span>(c)
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [2]: question1()</span>
+<span class="co">1011</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<p><em>Question 2 :</em></p>
+<p>Les expressions <code>maChaine[len(maChaine) - 1]</code> et <code>maChaine[- 1]</code> permettent d'obtenir le dernier caractère de <code>maChaine</code>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> question3():
+    resultat <span class="op">=</span> <span class="st">&quot;&quot;</span>
+    <span class="cf">for</span> c <span class="op">in</span> <span class="st">&quot;Bonsoir&quot;</span>:
+        resultat <span class="op">=</span> resultat <span class="op">+</span> c
+    <span class="bu">print</span>(resultat)
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [8]: question3()</span>
+<span class="co">Bonsoir</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> question4():
+    resultat <span class="op">=</span> <span class="st">&quot;&quot;</span>
+    <span class="cf">for</span> c <span class="op">in</span> <span class="st">&quot;Bonsoir&quot;</span>:
+        resultat <span class="op">=</span> resultat <span class="op">+</span> c
+        <span class="bu">print</span>(resultat)
+        
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [10]: question4()</span>
+<span class="co">B</span>
+<span class="co">Bo</span>
+<span class="co">Bon</span>
+<span class="co">Bons</span>
+<span class="co">Bonso</span>
+<span class="co">Bonsoi</span>
+<span class="co">Bonsoir</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-2" class="slide section level1">
+<h1>Exercice 2</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> compte(chaine,caractere):
+    <span class="co">&#39;&#39;&#39;prend en entrée une chaîne de caractères et un caractère, </span>
+<span class="co">    et affiche en sortie le nombre d’occurrence de ce caractère&#39;&#39;&#39;</span>
+    n <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">for</span> c <span class="op">in</span> chaine:
+        <span class="cf">if</span> c <span class="op">==</span> caractere:
+            n <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> n
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [11]: chaine = &quot;test&quot;</span>
+
+<span class="co">In [12]: chaine.count(&#39;t&#39;)</span>
+<span class="co">Out[12]: 2</span>
+
+<span class="co">In [13]: compte(chaine, &#39;t&#39;)</span>
+<span class="co">Out[13]: 2</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-3" class="slide section level1">
+<h1>Exercice 3</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> appartient(conteneur,element):
+    <span class="co">&#39;&#39;&#39;détermine si un caractère donné appartient à une chaîne de </span>
+<span class="co">    caractères donnée. (La fonction renverra True ou False).</span>
+<span class="co">    Reprogrammation de l&#39;operateur in&#39;&#39;&#39;</span>
+    <span class="cf">for</span> c <span class="op">in</span> conteneur:
+        <span class="cf">if</span> c <span class="op">==</span> element:
+            <span class="cf">return</span> <span class="va">True</span>
+    <span class="cf">return</span> <span class="va">False</span>
+
+<span class="kw">def</span> appartient2(conteneur,element):
+    <span class="co">&#39;&#39;&#39;détermine si un caractère donné appartient à une chaîne de </span>
+<span class="co">    caractères donnée. (La fonction renverra True ou False).</span>
+<span class="co">    Reprogrammation de l&#39;operateur in. ALgorithme de recherche séquentielle&#39;&#39;&#39;</span>
+    i <span class="op">=</span> <span class="dv">0</span>
+    <span class="bu">long</span> <span class="op">=</span> <span class="bu">len</span>(conteneur)
+    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">long</span> <span class="op">and</span> conteneur[i] <span class="op">!=</span> element:
+        i <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> i <span class="op">&lt;</span> <span class="bu">long</span>
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; chaine=&#39;The whole wolrd is a stage.&#39;</span>
+<span class="co">&gt;&gt;&gt; appartient(chaine,&#39;a&#39;)</span>
+<span class="co">True</span>
+<span class="co">&gt;&gt;&gt; appartient2(chaine,&#39;a&#39;)</span>
+<span class="co">True</span>
+<span class="co">&gt;&gt;&gt; appartient2(chaine,&#39;A&#39;)</span>
+<span class="co">False</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<p>Les fonctions précédentes peuvent aussi s'appliquer à des listes.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; t=[1,2,3]</span>
+<span class="co">&gt;&gt;&gt; appartient(t,1)</span>
+<span class="co">True</span>
+<span class="co">&gt;&gt;&gt; appartient(t,&#39;1&#39;)</span>
+<span class="co">False</span>
+<span class="co">&gt;&gt;&gt; appartient2(t,1)</span>
+<span class="co">True</span>
+<span class="co">&gt;&gt;&gt; appartient2(t,&#39;1&#39;)</span>
+<span class="co">False</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> positions(caractere,chaine):
+    <span class="co">&#39;&#39;&#39;renvoie la liste éventuellement vide des positions </span>
+<span class="co">    d’un caractère dans une chaîne.&#39;&#39;&#39;</span>
+    t <span class="op">=</span> [] <span class="co">#listes des positions</span>
+    <span class="cf">for</span> i <span class="op">in</span>  <span class="bu">range</span>(<span class="bu">len</span>(chaine)):
+        <span class="cf">if</span> chaine[i] <span class="op">==</span> caractere:
+            t.append(i)
+    <span class="cf">return</span> t
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; positions(&#39;a&#39;,&#39;abracadabra&#39;)</span>
+<span class="co">[0, 3, 5, 7, 10]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-4" class="slide section level1">
+<h1>Exercice 4</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> positionp(motif, texte, p):
+    <span class="co">&#39;&#39;&#39;teste si le sous-mot motif apparait dans texte à la position p&#39;&#39;&#39;</span>
+    <span class="cf">if</span> p <span class="op">+</span> <span class="bu">len</span>(motif) <span class="op">&gt;</span> <span class="bu">len</span>(texte):
+        <span class="cf">return</span> <span class="va">False</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(motif)):
+        <span class="cf">if</span> motif[i] <span class="op">!=</span> texte[p<span class="op">+</span>i]:
+            <span class="cf">return</span> <span class="va">False</span>
+    <span class="cf">return</span> <span class="va">True</span>
+
+<span class="kw">def</span> positionp2(motif, texte, p):
+    <span class="co">&#39;&#39;&#39;teste si le sous-mot motif apparait dans texte à la position p&#39;&#39;&#39;</span>
+    Lmotif <span class="op">=</span> <span class="bu">len</span>(motif)
+    Ltexte <span class="op">=</span> <span class="bu">len</span>(texte)
+    <span class="cf">if</span> p <span class="op">+</span> Lmotif <span class="op">&gt;</span> Ltexte:
+        <span class="cf">return</span> <span class="va">False</span>
+    i <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">while</span> i <span class="op">&lt;</span> Lmotif <span class="op">and</span>  motif[i] <span class="op">==</span> texte[p<span class="op">+</span>i]:
+            i <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> i <span class="op">==</span> Lmotif
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; motif, texte = &#39;cadabra&#39;,&#39;abracadabra&#39;</span>
+<span class="co">&gt;&gt;&gt; [positionp(motif, texte, i) for i in range(6)]</span>
+<span class="co">[False, False, False, False, True, False]</span>
+<span class="co">&gt;&gt;&gt; [positionp2(motif, texte, i) for i in range(6)]</span>
+<span class="co">[False, False, False, False, True, False]</span>
+<span class="co">&quot;&quot;&quot;</span>
+<span class="kw">def</span> sousmot(motif, texte):
+    <span class="co">&#39;&#39;&#39;prend en entrée deux chaînes de caractères motif et texte et</span>
+<span class="co">    retournant True ou False selon que motif est un sous-mot de texte&#39;&#39;&#39;</span>
+    <span class="cf">for</span> p <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(texte)<span class="op">-</span><span class="bu">len</span>(motif) <span class="op">+</span> <span class="dv">1</span>):
+        <span class="cf">if</span> positionp(motif, texte, p):
+            <span class="cf">return</span> <span class="va">True</span>
+    <span class="cf">return</span> <span class="va">False</span>
+
+<span class="kw">def</span> sousmot2(motif,texte):
+    <span class="co">&#39;&#39;&#39;prenant en entrée deux chaînes de caractères motif et texte et</span>
+<span class="co">    retournant True ou False selon que motif est un sous-mot de texte&#39;&#39;&#39;</span>
+    p <span class="op">=</span> <span class="dv">0</span>
+    Lmotif <span class="op">=</span> <span class="bu">len</span>(motif)
+    Ltexte <span class="op">=</span> <span class="bu">len</span>(texte)
+    <span class="cf">while</span> p <span class="op">&lt;=</span> Ltexte <span class="op">-</span> Lmotif  <span class="op">and</span> <span class="op">not</span> positionp(motif, texte, p):
+        p <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> p <span class="op">&lt;=</span> Ltexte <span class="op">-</span> Lmotif</code></pre></div>
+<p>On testera suivant quatre cas : absence, présence au bord gauche, au bord droit, et au milieu.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [23]: texte = &quot;crocodile&quot;</span>
+
+<span class="co">In [24]: [sousmot(motif, texte) for motif in [&quot;cro&quot;, &quot;acro&quot;, &quot;roc&quot;, &quot;rocd&quot;, &quot;ile&quot;, &quot;iles&quot;]]</span>
+<span class="co">Out[24]: [True, False, True, False, True, False]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<p>La fonction peut aussi s'appliquer aux listes.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; [i for i in range(1, 5)]</span>
+<span class="co">[1, 2, 3, 4]</span>
+<span class="co">&gt;&gt;&gt; [[i, i+1] for i in range(1, 4)]</span>
+<span class="co">[[1, 2], [2, 3], [3, 4]]</span>
+<span class="co">&gt;&gt;&gt; m1 = [i for i in range(1, 5)]</span>
+<span class="co">&gt;&gt;&gt; [sousmot(m1, m2) for m1 in [[i, i+1] for i in range(1, 5)]]</span>
+<span class="co">[True, True, True, False]</span>
+<span class="co">&gt;&gt;&gt; [sousmot2(m1, m2) for m1 in [[i, i+1] for i in range(1, 5)]]</span>
+<span class="co">[True, True, True, False]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<p>La fonction suivante prend en entrée deux chaînes de caractères et retourne la liste (éventuellement vide) des positions dans texte où on trouve motif.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> listepositions(motif, texte):
+    pos <span class="op">=</span> [] <span class="co">#liste des positions</span>
+    <span class="cf">for</span> p <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(texte) <span class="op">-</span> <span class="bu">len</span>(motif) <span class="op">+</span> <span class="dv">1</span>):
+        <span class="cf">if</span> positionp(motif, texte, p):
+            pos.append(p)
+    <span class="cf">return</span> pos
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [25]: positions_sous_mot(&#39;ta&#39;,&#39;taratata&#39;)</span>
+<span class="co">Out[25]: [0, 4, 6]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-5" class="slide section level1">
+<h1>Exercice 5</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> random <span class="im">import</span> randint
+
+<span class="kw">def</span> chaine_aleatoire(<span class="bu">long</span>):
+    <span class="co">&#39;&#39;&#39;Retourne une chaine aleatoire de longueur long contituée</span>
+<span class="co">    de caractères alphabétiques aléatoires entre &quot;A&quot; et &quot;Z&quot;&#39;&#39;&#39;</span>
+    binf,bsup  <span class="op">=</span> <span class="bu">ord</span>(<span class="st">&#39;A&#39;</span>),<span class="bu">ord</span>(<span class="st">&#39;Z&#39;</span>)
+    chaine <span class="op">=</span> <span class="st">&#39;&#39;</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">long</span>):
+        chaine <span class="op">+=</span> <span class="bu">chr</span>(randint(binf,bsup))
+    <span class="cf">return</span> chaine
+    
+<span class="kw">def</span> chaine_aleatoire2(longueur):
+    binf, bsup  <span class="op">=</span> <span class="bu">ord</span>(<span class="st">&#39;A&#39;</span>), <span class="bu">ord</span>(<span class="st">&#39;Z&#39;</span>)
+    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join([<span class="bu">chr</span>(randint(binf,bsup)) <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">long</span>)])
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; chaine_aleatoire(12)</span>
+<span class="co">&#39;HPVNVKKPUELP&#39;</span>
+<span class="co">&gt;&gt;&gt; chaine_aleatoire2(12)</span>
+<span class="co">&#39;LPTWINONKSLX&#39;</span>
+<span class="co">&quot;&quot;&quot;</span>
+<span class="kw">def</span> acgt_aleatoire(longueur):
+    <span class="co">&#39;&#39;&#39;Chaine aléatoire où chaque caractère est tiré parmi &quot;ACGT&quot;&#39;&#39;&#39;</span>
+    codons <span class="op">=</span> <span class="st">&#39;ACGT&#39;</span>
+    chaine<span class="op">=</span><span class="st">&#39;&#39;</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(longueur):
+        chaine <span class="op">+=</span> codons[randint(<span class="dv">0</span>, <span class="dv">3</span>)]
+    <span class="cf">return</span> chaine
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; acgt_aleatoire(16)</span>
+<span class="co">&#39;TGGGTAAATGGCGCAG&#39;</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<ul>
+<li><p>Question 3</p>
+<pre><code>motif = acgt_aleatoire(5)
+texte = acgt_aleatoire(10**4)
+print(&#39;Nombre de positions où motif=%s apparait dans texte : &#39;%motif,
+len(positions_sous_mot(motif, texte)))</code></pre></li>
+<li><p>Nombre de positions où <code>motif = &quot;GGATA&quot;</code> apparait dans texte : 10</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> exo5_question2():
+    nexemple, longueur <span class="op">=</span> <span class="dv">100</span>, <span class="dv">5</span>
+    cumulnpos <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nexemple):
+        m1 <span class="op">=</span> acgt_aleatoire(longueur)
+        m2 <span class="op">=</span> acgt_aleatoire(<span class="dv">10</span><span class="op">**</span><span class="dv">4</span>)
+        cumulnpos <span class="op">+=</span> <span class="bu">len</span>(positions_sous_mot(m1,m2))
+    <span class="bu">print</span>(<span class="st">&#39;Sur </span><span class="sc">%s</span><span class="st"> exemples, moyenne du nombre de positions où une chaine\</span>
+<span class="st">     aléatoire de longueur </span><span class="sc">%s</span><span class="st"> (avec des lettres parmi ACGT) apparait dans \</span>
+<span class="st">     une chaine aleatoire de \</span>
+<span class="st">    longueur 10**4 : </span><span class="sc">%.3f</span><span class="st">&#39;</span><span class="op">%</span>(nexemple,longueur,cumulnpos<span class="op">/</span>nexemple))</code></pre></div>
+<p>Sur 100 exemples, la moyenne du nombre de positions où une chaine aléatoire de longueur 5 (avec des lettres parmi ACGT) apparait dans une chaine aleatoire de longueur <span class="math inline">\(10^4\)</span> est expérimentalement de <span class="math inline">\(9,360\)</span>.</p>
+<p>Calculons la valeur théorique :</p>
+<ul>
+<li><p>Soit <span class="math inline">\(X\)</span> le nombre de positions où m1 apparait dans m2 :</p>
+<p><span class="math display">\[X=X_1+X_2+\cdots+X_{996}\]</span></p>
+<p>où les variables aléatoires <span class="math inline">\(X_i\)</span> (avec <span class="math inline">\(i\)</span> entre <span class="math inline">\(1\)</span> et <span class="math inline">\(996\)</span>) suivent une loi de Bernoulli de paramètre <span class="math inline">\(\frac{1}{4^5}\)</span>.</p></li>
+<li><p>Si m1 apparait dans la sous-chaine de m2 commençant à la position <span class="math inline">\(i\)</span> aalors <span class="math inline">\(X_{i}=1\)</span> et <span class="math inline">\(X_i=0\)</span> sinon.</p></li>
+<li><p>On a pour tout entier <span class="math inline">\(1 \leqslant i \leqslant 9996\)</span> , <span class="math inline">\(\text{E}(X_i)=\frac{1}{4^5}\)</span>.</p></li>
+<li><p>Donc par linearité de l'espérance : <span class="math inline">\(\text{E}(X)=9996 \times \text{E}(X_i) = \frac{9996}{4^5}\)</span></p>
+<pre><code>&gt;&gt;&gt; 9996/4**5 #valeur théorique
+9.76171875</code></pre></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<div id="exercice-6" class="slide section level1">
+<h1>Exercice 6</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> inversion(chaine):
+    <span class="co">&#39;&#39;&#39;Retourne l\&#39;inverse de la chaine passée en paramètre&#39;&#39;&#39;</span>
+    inv <span class="op">=</span> <span class="st">&#39;&#39;</span>
+    <span class="cf">for</span> c <span class="op">in</span> chaine:
+        inv <span class="op">=</span> c <span class="op">+</span> inv
+    <span class="cf">return</span> inv
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [16]: chaine = &#39;test&#39;</span>
+
+<span class="co">In [17]: chaine[::-1]  #inversion par slicing</span>
+<span class="co">Out[17]: &#39;tset&#39;</span>
+
+<span class="co">In [18]: inversion(chaine)</span>
+<span class="co">Out[18]: &#39;tset&#39;</span>
+<span class="co">&quot;&quot;&quot;</span>
+<span class="kw">def</span> mot_palindrome(mot):
+    <span class="co">&#39;&#39;&#39;teste si un mot est un palindrome&#39;&#39;&#39;</span>
+    mot <span class="op">=</span> mot.lower() <span class="co">#conversion en minuscules</span>
+    mot <span class="op">=</span> convert_accents(mot) <span class="co">#élimination des accents</span>
+    <span class="cf">return</span> inversion(mot) <span class="op">==</span> mot
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; mot_palindrome(&#39;radar&#39;)</span>
+<span class="co">True</span>
+<span class="co">&gt;&gt;&gt; mot_palindrome(&#39;baobab&#39;)</span>
+<span class="co">False</span>
+<span class="co">&quot;&quot;&quot;</span>
+<span class="kw">def</span> texte_palindrome(chaine):
+    <span class="co">&#39;&#39;&#39;teste si un texte est un palindrome</span>
+<span class="co">    La variable texte etant de type string ses modifications dans le </span>
+<span class="co">    contexte local de la fonction ne modifient pas sa valeur dans le</span>
+<span class="co">    contexte global du programme&#39;&#39;&#39;</span>
+    chaine <span class="op">=</span> chaine.lower() <span class="co">#conversion de chaine en minuscules</span>
+    accent, nonaccent <span class="op">=</span> <span class="st">&quot;âàéèêëîïôûüç&quot;</span>, <span class="st">&quot;aaeeeeiiouuc&quot;</span>
+    ponctuation <span class="op">=</span> <span class="st">&quot; !?;,:.&quot;</span>
+    newchaine<span class="op">=</span><span class="st">&#39;&#39;</span>
+    i <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">while</span>  i <span class="op">&lt;</span> <span class="bu">len</span>(chaine):
+        caractere <span class="op">=</span> chaine[i]       
+        <span class="co">#liste des positions de caractere dans la chaine des caracteres accentués </span>
+        p <span class="op">=</span> positions(caractere,accent)
+        <span class="co">#si p est un caractere acentué</span>
+        <span class="cf">if</span> p<span class="op">!=</span>[]:
+            newchaine <span class="op">+=</span> nonaccent[p[<span class="dv">0</span>]]
+        <span class="co">#sinon si caractere n&#39;est pas un caractere de ponctuation</span>
+        <span class="cf">elif</span> caractere <span class="op">not</span> <span class="op">in</span> ponctuation:
+            newchaine <span class="op">+=</span> caractere
+        i <span class="op">+=</span> <span class="dv">1</span>
+    <span class="co">#pour tester</span>
+    <span class="co">#print(&#39;Nouvelle chaine nettoyée : &#39;, newchaine)</span>
+    <span class="cf">return</span> inversion(newchaine) <span class="op">==</span> newchaine                
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; texte_palindrome(&#39;Ésope reste ici, et se repose&#39;)</span>
+<span class="co">Nouvelle chaine nettoyée :  esoperesteicietserepose</span>
+<span class="co">True</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-7" class="slide section level1">
+<h1>Exercice 7</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> occurences(chaine):
+    chaine <span class="op">=</span> chaine.lower() <span class="co">#on convertit la chaine en minuscules</span>
+    chaine <span class="op">=</span> convert_accents(chaine) <span class="co">#conversion des caracteres accentues</span>
+    tab <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">26</span> 
+    <span class="co">#on crée un tableau de 26 zéros correspondant aux occurences</span>
+    <span class="co">#de chaque lettre</span>
+    <span class="cf">for</span> lettre <span class="op">in</span> chaine:
+        <span class="cf">if</span> <span class="dv">97</span> <span class="op">&lt;=</span> <span class="bu">ord</span>(lettre) <span class="op">&lt;=</span> <span class="dv">122</span>:
+            tab[<span class="bu">ord</span>(lettre)<span class="op">-</span><span class="dv">97</span>] <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> tab
+
+
+<span class="kw">def</span> position_maxi(tab):
+    <span class="co">&#39;&#39;&#39;retourne le maximum et la liste des positions où il est atteint&#39;&#39;&#39;</span>
+    tmaxi,maxi <span class="op">=</span> [<span class="dv">0</span>],tab[<span class="dv">0</span>]
+    <span class="cf">for</span> indice <span class="op">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(tab)):
+        terme<span class="op">=</span>tab[indice]
+        <span class="cf">if</span> terme <span class="op">&gt;</span> maxi:
+            tmaxi, maxi <span class="op">=</span> [indice],terme
+        <span class="cf">elif</span> terme <span class="op">==</span> maxi:
+            tmaxi.append(indice)
+    <span class="cf">return</span> maxi,tmaxi
+
+
+<span class="kw">def</span> occurences_maxi(chaine):
+    <span class="co">&#39;&#39;&#39;détermine les lettres de l’alphabet les plus fréquentes dans une</span>
+<span class="co">    chaîne de caractères.&#39;&#39;&#39;</span>
+    histo <span class="op">=</span> occurences(chaine) <span class="co">#histogramme des occurences des lettres</span>
+    maxi,tmaxi <span class="op">=</span> position_maxi(histo)
+    <span class="cf">for</span> i <span class="op">in</span> tmaxi:
+        <span class="bu">print</span>(<span class="st">&#39;La lettre&#39;</span>,<span class="bu">chr</span>(<span class="dv">97</span><span class="op">+</span>i),<span class="st">&#39; est apparue &#39;</span>,maxi,<span class="st">&#39; fois dans la chaine&#39;</span>)
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; occurences_maxi(&#39;taratatta&#39;)</span>
+<span class="co">La lettre a  est apparue  4  fois dans la chaine</span>
+<span class="co">La lettre t  est apparue  4  fois dans la chaine</span>
+<span class="co">&gt;&gt;&gt; occurences_maxi(&#39;çiçi éécè&#39;)</span>
+<span class="co">La lettre c  est apparue  3  fois dans la chaine</span>
+<span class="co">La lettre e  est apparue  3  fois dans la chaine</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-8" class="slide section level1">
+<h1>Exercice 8</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> est_anagramme(m1,m2):
+    <span class="co">&#39;&#39;&#39;teste si le mot m1 est anagramme de m2.</span>
+<span class="co">    On redéfiniti la fonction occurences pour traiter le ces des traits</span>
+<span class="co">    d&#39;union&#39;&#39;&#39;</span>
+    <span class="kw">def</span> occurences2(chaine):
+        chaine <span class="op">=</span> chaine.lower() <span class="co">#on convertit la chaine en minuscules</span>
+        chaine <span class="op">=</span> convert_accents(chaine) <span class="co">#conversion des caracteres accentues</span>
+        tab <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">27</span> 
+        <span class="co">#on crée un tableau de 26 zéros correspondant aux occurences</span>
+        <span class="co">#de chaque lettre</span>
+        <span class="cf">for</span> lettre <span class="op">in</span> chaine:
+            <span class="cf">if</span> <span class="dv">97</span> <span class="op">&lt;=</span> <span class="bu">ord</span>(lettre) <span class="op">&lt;=</span> <span class="dv">122</span>:
+                tab[<span class="bu">ord</span>(lettre)<span class="op">-</span><span class="dv">97</span>] <span class="op">+=</span> <span class="dv">1</span>
+            <span class="cf">elif</span> lettre<span class="op">==</span><span class="st">&#39;-&#39;</span>:
+                tab[<span class="dv">26</span>] <span class="op">+=</span> <span class="dv">1</span>
+        <span class="cf">return</span> tab
+        
+    <span class="cf">return</span> occurences2(m1)<span class="op">==</span>occurences2(m2)
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">&gt;&gt;&gt; est_anagramme(&#39;beausejour&#39;,&#39;jourseueba&#39;)</span>
+<span class="co">True</span>
+<span class="co">&gt;&gt;&gt; est_anagramme(&#39;beausejour&#39;,&#39;jourseuebz&#39;)</span>
+<span class="co">False</span>
+<span class="co">&gt;&gt;&gt; est_anagramme(&#39;beau-sejour&#39;,&#39;jourseueba&#39;)</span>
+<span class="co">False</span>
+<span class="co">&gt;&gt;&gt; est_anagramme(&#39;beau-sejour&#39;,&#39;jo-urseueba&#39;)</span>
+<span class="co">True</span>
+<span class="co">&quot;&quot;&quot;</span>    
+
+  </code></pre></div>
+</div>
+</body>
+</html>
