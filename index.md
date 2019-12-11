@@ -54,3 +54,10 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version pdf](TP3/TP_Listes_852_2016-2017.pdf)
   - [corrigé version html](TP3/TP_Listes_852_2016-2017.html)
   - [corrigé version notebook Jupyter](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP3/TP_Listes_852_2016-2017.ipynb)
+
+
+* TP 4 :
+  - [énoncé version pdf](TP4/06_Chaines.pdf)
+  - [corrigé version python](TP4/852-correc-TPchaines-2016-md.py)
+  - [corrigé version pdf](TP4/852-correc-TPchaines-2016-md.pdf)
+  - [corrigé version html](TP4/852-correc-TPchaines-2016-md.html)
