@@ -61,3 +61,9 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version python](TP4/852-correc-TPchaines-2016-md.py)
   - [corrigé version pdf](TP4/852-correc-TPchaines-2016-md.pdf)
   - [corrigé version html](TP4/852-correc-TPchaines-2016-md.html)
+  
+* TP 5 :
+  - [énoncé version pdf](TP5/08_Tris.pdf)
+  - [corrigé version python](TP5/852-correc-TPtris-2018-md.py)
+  - [corrigé version pdf](TP5/852-correc-TPtris-2018-md.pdf)
+  - [corrigé version html](TP5/852-correc-TPtris-2018-md.html)
