@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="852 - M.Lalauze - M.Junier" />
+  <title>Corrigé du TP Python sur les Tris par comparaison</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Corrigé du TP Python sur les Tris par comparaison</h1>
+  <p class="author">
+852 - M.Lalauze - M.Junier
+  </p>
+</div>
+<div class="slide section level1">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<div id="sitographie" class="slide section level1">
+<h1>Sitographie</h1>
+<p>Quelques sites internet avec des applications de simulations d'algorithmes de tris et des outils de visualisation :</p>
+<ul>
+<li><p><a href="http://www.sorting-algorithms.com/">Sorting algorithms</a></p></li>
+<li><p><a href="https://interstices.info/jcms/c_6973/les-algorithmes-de-tri">Algorithmes de tris sur Interstices</a></p></li>
+</ul>
+</div>
+<div id="quelques-outils-de-tests" class="slide section level1">
+<h1>Quelques outils de tests</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">from</span> random <span class="im">import</span> randint 
+
+<span class="co">#un tableau contenant 3 tableaux d&#39;entiers aléatoires de tailles 10, 100, 1000</span>
+BENCH2 <span class="op">=</span> [[randint(<span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span><span class="dv">10</span><span class="op">**</span>i) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span>i)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">4</span>)]
+
+<span class="co">#idem mais avec 3 tableaux d&#39;entiers aléatoires de tailles impaires</span>
+BENCH1 <span class="op">=</span> [[randint(<span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span><span class="dv">10</span><span class="op">**</span>i) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span>i <span class="op">+</span> <span class="dv">1</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">4</span>)]
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [7]: BENCH2[0]</span>
+<span class="co">Out[7]: [14, 14, 9, 14, 10, 2, 1, 20, 1, 20]</span>
+
+<span class="co">In [8]: [len(BENCH2[k]) for k in range(len(BENCH2))]</span>
+<span class="co">Out[8]: [10, 100, 1000]</span>
+
+<span class="co">#dix derniers éléments de BENCH2[2] (varie selon l&#39;exécution)</span>
+<span class="co">In [9]: BENCH2[2][-10:]  </span>
+<span class="co">Out[9]: [1411, 1942, 1716, 1924, 280, 584, 949, 823, 1770, 1232]</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> bontri(t):
+    <span class="co">&quot;&quot;&quot;Détermine si un tableau est trié dans l&#39;ordre croissant&quot;&quot;&quot;</span>
+    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t)<span class="op">-</span><span class="dv">1</span>):
+        <span class="cf">if</span> t[k] <span class="op">&gt;</span> t[k<span class="op">+</span><span class="dv">1</span>]:
+            <span class="cf">return</span> <span class="va">False</span>
+    <span class="cf">return</span> <span class="va">True</span>
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [22]: bontri([1,2,3])</span>
+<span class="co">Out[22]: True</span>
+
+<span class="co">In [23]: bontri([1,3,2])</span>
+<span class="co">Out[23]: False</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> procedure_to_fonction(f):
+    <span class="co">&quot;&quot;&quot;Remplace la fonction f qui est une procedure ne retournant rien</span>
+<span class="co">    par une fonction fbis qui exécute f sur ses arguments puis retourne</span>
+<span class="co">    ses arguments&quot;&quot;&quot;</span>
+    
+    <span class="kw">def</span> fbis(<span class="op">*</span>args):
+        f(<span class="op">*</span>args)
+        <span class="cf">return</span> args
+        
+    <span class="cf">return</span> fbis
+
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="co">In [11]: t1 = BENCH1[0]</span>
+
+<span class="co">In [12]: t1</span>
+<span class="co">Out[12]: [2, 7, 8, 9, 10, 13, 13, 14, 16, 17, 17]</span>
+
+<span class="co">In [13]: procedure_to_fonction(tri_insertion)(t1)</span>
+<span class="co">Out[13]: ([2, 7, 8, 9, 10, 13, 13, 14, 16, 17, 17],)</span>
+
+<span class="co">&quot;&quot;&quot;</span>
+
+
+<span class="kw">def</span> test_tri(tri, BENCH):
+    <span class="co">#copie profonde de BENCH qui est un tableau de tableaux</span>
+    COPIE <span class="op">=</span> [t[:] <span class="cf">for</span> t <span class="kw">in</span> BENCH] 
+    <span class="cf">return</span> [bontri(procedure_to_fonction(tri)(t)) <span class="cf">for</span> t <span class="kw">in</span> COPIE]
+    </code></pre></div>
+</div>
+<div id="exercice-1" class="slide section level1">
+<h1>Exercice 1</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> tri_insertion(t):
+    <span class="co">&quot;&quot;&quot;Tri d&#39;insertion en place par échanges d&#39;éléments adjacents&quot;&quot;&quot;</span>
+    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(t)):
+        j <span class="op">=</span> i
+        <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="dv">1</span> <span class="kw">and</span> t[j] <span class="op">&lt;</span> t[j <span class="op">-</span> <span class="dv">1</span>]:
+            t[j <span class="op">-</span> <span class="dv">1</span>], t[j] <span class="op">=</span> t[j], t[j <span class="op">-</span> <span class="dv">1</span>]
+            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span>
+            
+<span class="kw">def</span> tri_insertion_echangeV2(t):
+    <span class="co">&quot;&quot;&quot;Tri d&#39;insertion en place par échanges d&#39;éléments adjacents&quot;&quot;&quot;</span>
+    <span class="co">#Première boucle sur l&#39;index du premier élément pas trié</span>
+    <span class="cf">for</span> indexpatri <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(t)):
+        j <span class="op">=</span> indexpatri <span class="op">-</span> <span class="dv">1</span>
+        <span class="co">#seconde boucle sur les éléments déjà triés</span>
+        <span class="co">#pour insérer le premier élément pas trié parmi eux</span>
+        <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> t[j] <span class="op">&gt;</span> t[j<span class="op">+</span><span class="dv">1</span>]:
+            t[j], t[j<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> t[j<span class="op">+</span><span class="dv">1</span>], t[j]
+            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span>
+            
+<span class="kw">def</span> tri_insertion_echangeV3(t):
+    <span class="co">&quot;&quot;&quot;Tri d&#39;insertion en place&quot;&quot;&quot;</span>
+    <span class="co">#Première boucle sur l&#39;index du premier élément pas trié</span>
+    <span class="cf">for</span> indexpatri <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(t)):
+        element <span class="op">=</span> t[indexpatri]
+        j <span class="op">=</span> indexpatri <span class="op">-</span> <span class="dv">1</span>
+        <span class="co">#seconde boucle sur les éléments déjà triés</span>
+        <span class="co">#on recherche l&#39;index où il faut insérer l&#39;élément</span>
+        <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> t[j] <span class="op">&gt;</span> element:
+            t[j<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> t[j]
+            j <span class="op">-=</span> <span class="dv">1</span>
+        t[j<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> element
+        
+        
+        
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [1]: BENCH1[0]</span>
+<span class="co">Out[1]: [2, 7, 8, 6, 7, 16, 6, 4, 18, 14, 20]</span>
+
+<span class="co">In [2]: test_tri(tri_insertion, BENCH1)</span>
+<span class="co">Out[2]: [True, True, True]</span>
+
+<span class="co">In [3]: BENCH1[0]  #les tableaux du banc d&#39;essai n&#39;ont pas été modifiés</span>
+<span class="co">Out[3]: [2, 7, 8, 6, 7, 16, 6, 4, 18, 14, 20]</span>
+
+<span class="co">In [4]: test_tri(tri_insertion_echangeV2, BENCH1)</span>
+<span class="co">Out[4]: [True, True, True]</span>
+
+<span class="co">In [5]: test_tri(tri_insertion_echangeV3, BENCH1)</span>
+<span class="co">Out[5]: [True, True, True]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-2-tri-par-insertion-avec-loutil-de-slicing" class="slide section level1">
+<h1>Exercice 2 : tri par insertion avec l'outil de slicing</h1>
+<p>On recherche la place où il faut insérer le nouvel élément dans le tableau déjà trié et on l'insère avec l'outil de slicing.</p>
+<p>On donne ci-dessous un exemple d'insertion d'élément en position 1 (sans suppression de l'élément qui était auparavant en position 1).</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [25]: t = [3, 1, 5]</span>
+
+<span class="co">In [26]: t[1:1] = [7]</span>
+
+<span class="co">In [27]: t</span>
+<span class="co">Out[27]: [3, 7, 1, 5]</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> place(x, t):
+    <span class="co">&#39;&#39;&#39;Retourne l&#39;index de la place de x dans le tableau t trié dans l&#39;ordre croissant&#39;&#39;&#39;</span>
+    k <span class="op">=</span> <span class="bu">len</span>(t) <span class="op">-</span> <span class="dv">1</span>
+    <span class="cf">while</span> k <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> t[k] <span class="op">&gt;</span> x:
+        k <span class="op">-=</span> <span class="dv">1</span>
+    <span class="cf">return</span> k <span class="op">+</span> <span class="dv">1</span>
+
+<span class="kw">def</span> tri_insertion_2(t):
+    tri <span class="op">=</span> []
+    <span class="cf">for</span> x <span class="kw">in</span> t:
+        k <span class="op">=</span> place(x, tri)
+        tri[k : k] <span class="op">=</span> [x]
+    <span class="cf">return</span> tri
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [22]: test_tri(tri_insertionbis, BENCH1)</span>
+<span class="co">Out[22]: [True, True, True]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p><strong>Analyse de complexité du tri par insertion :</strong> (hors programme)</p>
+<ul class="incremental">
+<li>Si le tableau est <em>déjà trié</em>, on effectue alors une seule comparaison à chaque insertion soit <span class="math inline">\(n-1\)</span> comparaisons au total, <strong>la complexité est alors linéaire</strong>. Cette bonne propriété que ne possède pas le tri par sélection fait du tri par insertion un tri efficace lorsque le tableau est déjà trié ou lorsqu'il y a peu de comparaisons.</li>
+</ul>
+<ul class="incremental">
+<li>Si le tableau est <em>trié dans l'ordre contraire</em> on effectue <span class="math inline">\(i\)</span> comparaisons lors de l'insertion d'indice <span class="math inline">\(i\)</span> pour <span class="math inline">\(i\)</span> variant de <span class="math inline">\(1\)</span> à <span class="math inline">\(n - 1\)</span> (tableaux indexés de 0 à <span class="math inline">\(n-1\)</span>) , soit <span class="math inline">\(1 + 2 + \cdots + n-1 = n(n-1)/2\)</span> comparaisons. <strong>La complexité est alors quadratique</strong>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<div id="exercice-3-médiane-dune-série" class="slide section level1">
+<h1>Exercice 3 : Médiane d'une série</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> mediane(t):
+    <span class="co">&quot;&quot;&quot;Retourne la médiane d&#39;un tableau de nombres</span>
+<span class="co">    sans modifier le tableau&quot;&quot;&quot;</span>
+    tcroi <span class="op">=</span> tri_insertion_2(t) <span class="co">#tableau t trié dans l&#39;ordre croissant</span>
+    m <span class="op">=</span> <span class="bu">len</span>(t)<span class="op">//</span><span class="dv">2</span>
+    <span class="cf">if</span> <span class="bu">len</span>(t)<span class="op">%</span><span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:
+        <span class="cf">return</span> (tcroi[m <span class="dv">-1</span>] <span class="op">+</span> tcroi[m])<span class="op">/</span><span class="dv">2</span>
+    <span class="cf">return</span> tcroi[m]
+
+
+<span class="kw">def</span> medianebis(tab):
+    <span class="co">&quot;&quot;&quot;Détermine la médiane d&#39;un tableau de nombres en triant et modifiant</span>
+<span class="co">    le tableau sur place&quot;&quot;&quot;</span>
+    <span class="co">#tri du tableau dans l&#39;ordre croissant</span>
+    tri_insertion(tab)
+    n <span class="op">=</span> <span class="bu">len</span>(tab)
+    <span class="co"># on applique la formule de la médiane vue au lycée</span>
+    <span class="co"># attention les indices commencent à 0 </span>
+    <span class="co"># donc si le nombre d&#39;éléments dans la liste est impaire</span>
+    <span class="co"># sa taille est paire et vice-versa</span>
+    <span class="cf">if</span> n<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">1</span>:
+        <span class="cf">return</span> tab[n<span class="op">//</span><span class="dv">2</span>]
+    <span class="cf">return</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span>(tab[(n<span class="dv">-1</span>)<span class="op">//</span><span class="dv">2</span>]<span class="op">+</span>tab[(n<span class="dv">-1</span>)<span class="op">//</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>])
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [16]: [medianebis(t) for t in BENCH1]</span>
+<span class="co">Out[16]: [11, 98, 983]</span>
+
+<span class="co">In [17]: [mediane(t) for t in BENCH1]</span>
+<span class="co">Out[17]: [11, 98, 983]</span>
+<span class="co">&quot;&quot;&quot;</span>
+        </code></pre></div>
+</div>
+<div id="exercice-4-recherche-dun-élément" class="slide section level1">
+<h1>Exercice 4 : recherche d'un élément</h1>
+<h2 id="question-1-recherche-séquentielle">Question 1 : Recherche séquentielle</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> appartient(liste, element):
+    <span class="co">&#39;&#39;&#39;Recherche séquentielle d&#39;un élément dans une liste&#39;&#39;&#39;</span>
+    <span class="cf">for</span> x <span class="kw">in</span> liste:
+        <span class="cf">if</span> x <span class="op">==</span> element:
+            <span class="cf">return</span> <span class="va">True</span>
+    <span class="cf">return</span> <span class="va">False</span></code></pre></div>
+<p>Lors d'une recherche séquentielle, la complexité est linéaire. Si l'élément cherchée se trouve en dernière position ou est absent dans la liste, alors il faut comparer l'élément cherché avec tous les éléments de la liste.</p>
+<p>La <strong>complexité temporelle est linéaire</strong>, de l'ordre de <span class="math inline">\(O(n)\)</span> où <span class="math inline">\(n\)</span> est la taille de la liste.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<h2 id="question-2-recherche-par-dichotomie">Question 2 : Recherche par dichotomie</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> recherche_dicho(liste, element):
+    <span class="co">&#39;&#39;&#39;Retourne l&#39;index d&#39;element dans liste triée dans l&#39;ordre croissant</span>
+<span class="co">    si element dans liste, sinon retourne None&#39;&#39;&#39;</span>
+    n <span class="op">=</span> <span class="bu">len</span>(liste)
+    a <span class="op">=</span> <span class="dv">0</span>
+    b <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span>
+    <span class="cf">while</span> a <span class="op">&lt;=</span> b:
+        m <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">//</span> <span class="dv">2</span>
+        <span class="cf">if</span> liste[m] <span class="op">&lt;</span> element:
+            a <span class="op">=</span> m <span class="op">+</span> <span class="dv">1</span>
+        <span class="cf">elif</span> liste[m] <span class="op">&gt;</span> element:
+            b <span class="op">=</span> m <span class="op">-</span> <span class="dv">1</span>
+        <span class="cf">else</span>:
+            <span class="co">#l&#39;élément cherché est en position m</span>
+            <span class="cf">return</span> m 
+    <span class="co">#l&#39;élément cherché n&#39;est pas dans la liste</span>
+    <span class="cf">return</span> <span class="va">None</span>
+    </code></pre></div>
+<p>L'algorithme de recherche dichotomique ne peut s'appliquer qu'à un tableau trié.</p>
+<ul>
+<li>Commençons par prouver la terminaison et la correction de l'algorithme.
+<ul>
+<li><p><strong>Premier cas :</strong> Si <code>element</code> appartient à <code>t</code>, la boucle maintient <strong>l'invariant</strong> <code>a &lt;= element &lt;= b</code>.</p>
+<code>element</code> est nécessairement atteint avant la fin de la boucle, lorsque le test <code>liste[m] == element</code> retourne <code>True</code>, ce qui finit par se produire puisque la boucle s'exécute tant que <code>a &lt;= b</code>.<br />
+La fonction retourne alors <code>True</code> avant la fin de la boucle ce qui est correct dans ce cas.</li>
+<li><p><strong>Deuxième cas :</strong> Si <code>element</code> n'appartient à <code>t</code>, la boucle se termine car la structure conditionnelle incrémente ou décrémente <code>m</code> à chaque tour et on atteint nécessairement l'état <code>a &lt; b</code> ou <code>a &gt; b</code>. La boucle se terminant sans que <code>element</code> soit trouvé, la fonction retourne <code>False</code> ce qui est correct dans ce cas.</p></li>
+</ul></li>
+<li>Analysons la <strong>complexité temporelle</strong> de cet algorithme :
+<ul>
+<li>À chaque tour de boucle, la longueur de la zone de recherche est divisée par <span class="math inline">\(2\)</span> environ. Initialement la zone de recherche a pour longueur <span class="math inline">\(b - a\)</span> donc la boucle se termine dans le pire des cas au bout de <span class="math inline">\(n\)</span> tours avec <span class="math inline">\(n\)</span> vérifiant <span class="math inline">\(\frac{b-a}{2^{n}}&lt;1 \Longleftrightarrow 2^{n-1} \leqslant b -a &lt; 2^{n}\)</span>.</li>
+</ul>
+En appliquant le logarithme népérien qui est une fonction croissante sur <span class="math inline">\([0 ; +\infty[\)</span>, on obtient :
+<span class="math display">\[\begin{align*}
+(n-1) \ln(2)&amp; \leqslant \ln(b -a) &lt; n \ln(2)\\
+n-1 &amp; \leqslant \frac{\ln(b -a)}{\ln(2)} &lt; n 
+\end{align*}\]</span>
+Ainsi le nombre maximal d'itérations est <span class="math inline">\(\left\lfloor\frac{\ln(b -a)}{\ln(2)}\right\rfloor + 1\)</span>, et la <strong>complexité temporelle est logarithmique</strong>, de l'ordre de <span class="math inline">\(O(\ln(n))\)</span> où <span class="math inline">\(n\)</span> est la taille de la liste.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> place_dicho(x, t):
+    <span class="co">&#39;&#39;&#39;Retourne l&#39;index de la place de x dans le tableau t trié dans l&#39;ordre </span>
+<span class="co">    croissant. Recherche dichotomique&#39;&#39;&#39;</span>
+    n <span class="op">=</span> <span class="bu">len</span>(t)
+    a <span class="op">=</span> <span class="dv">0</span>
+    b <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span>
+    <span class="cf">if</span> t[b] <span class="op">&lt;=</span> x:
+        <span class="cf">return</span> n 
+    <span class="cf">elif</span> x <span class="op">&lt;=</span> t[a]:
+        <span class="cf">return</span> <span class="dv">0</span>
+    <span class="cf">else</span>:
+        <span class="cf">while</span> b <span class="op">-</span> a <span class="op">&gt;</span> <span class="dv">1</span>:
+            m <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">//</span> <span class="dv">2</span>
+            <span class="cf">if</span> t[m] <span class="op">&gt;=</span> x:
+                b <span class="op">=</span> m
+            <span class="cf">else</span>:
+                a <span class="op">=</span> m
+        <span class="cf">return</span> b
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [19]: place_dicho(12, [10,11,12])</span>
+<span class="co">Out[19]: 3</span>
+
+<span class="co">In [20]: place_dicho(10, [10,11,12])</span>
+<span class="co">Out[20]: 0</span>
+
+<span class="co">In [21]: place_dicho(11, [10,11,12])</span>
+<span class="co">Out[21]: 1</span>
+
+<span class="co">In [22]: place_dicho(11.5, [10,11,12])</span>
+<span class="co">Out[22]: 2</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="exercice-4-tri-par-bulles" class="slide section level1">
+<h1>Exercice 4 : tri par bulles :</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> tri_bulle(t):
+    <span class="co">&#39;&#39;&#39;Tri par bulles de t en place&#39;&#39;&#39;</span>
+    n <span class="op">=</span> <span class="bu">len</span>(t)
+    <span class="co">#n - 1 passages nécessaires dans le pire des cas</span>
+    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):
+        <span class="co">#on fait remonter les bulles/éléments les plus grand(es)</span>
+        <span class="co">#de la première position d&#39;index 0 jusqu&#39;à la dernière position non triée n -1 - i</span>
+        <span class="co">#à chaque passage le plus grand élément trié remonte jusqu&#39;à sa position n - 1 - i</span>
+        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> i):
+            <span class="cf">if</span> t[j] <span class="op">&gt;</span> t[j <span class="op">+</span> <span class="dv">1</span>]:
+                t[j], t[j <span class="op">+</span> <span class="dv">1</span>]<span class="op">=</span> t[j<span class="op">+</span><span class="dv">1</span>], t[j]
+                
+<span class="kw">def</span> tri_bulle2(t):
+    <span class="co">&#39;&#39;&#39;Tri par bulles de t en place&#39;&#39;&#39;</span>
+    change <span class="op">=</span> <span class="va">True</span>
+    <span class="cf">while</span> change:
+        change <span class="op">=</span> <span class="va">False</span>
+        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t) <span class="op">-</span> <span class="dv">1</span>):
+            <span class="cf">if</span> t[i] <span class="op">&gt;</span> t[i <span class="op">+</span> <span class="dv">1</span>]:
+                t[i], t[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> t[i <span class="op">+</span> <span class="dv">1</span>], t[i]
+                change <span class="op">=</span> <span class="va">True</span>
+                
+<span class="kw">def</span> tri_bulle3(t):
+    <span class="co">&#39;&#39;&#39;Tri par bulle amélioré&#39;&#39;&#39;</span>
+    change <span class="op">=</span> <span class="va">True</span>
+    <span class="co">#compteur de passages</span>
+    c <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">while</span> change:
+        change <span class="op">=</span> <span class="va">False</span>
+        k <span class="op">=</span> <span class="dv">0</span>
+        <span class="co">#à chaque passage on doit balayer les positions de 0 à len(t) - 2</span>
+        <span class="co">#moins les c  dernières positions où sont déjà classés les + grands</span>
+        <span class="co">#il reste donc len(t) - c  positions à balayer</span>
+        <span class="cf">while</span>  k <span class="op">&lt;</span> <span class="bu">len</span>(t) <span class="op">-</span> c:
+            <span class="cf">if</span> t[k] <span class="op">&gt;</span> t[k<span class="op">+</span><span class="dv">1</span>]:
+                t[k], t[k<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> t[k<span class="op">+</span><span class="dv">1</span>], t[k]
+                <span class="co"># on modifie le booleen change uniquement au premier mouvement</span>
+                <span class="cf">if</span> <span class="kw">not</span> change:
+                    change <span class="op">=</span> <span class="va">True</span>
+            k <span class="op">+=</span> <span class="dv">1</span>
+        c <span class="op">+=</span> <span class="dv">1</span>
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [8]: test_tri(tri_bulle, BENCH1)</span>
+<span class="co">Out[8]: [True, True, True]</span>
+
+<span class="co">In [9]: BENCH1[0]</span>
+<span class="co">Out[9]: [2, 7, 8, 6, 7, 16, 6, 4, 18, 14, 20]</span>
+
+<span class="co">In [10]: test_tri(tri_bulle2, BENCH1)</span>
+<span class="co">Out[10]: [True, True, True]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p><strong>Analyse Complexité du tri par bulles :</strong> (hors programme)</p>
+<ul class="incremental">
+<li><p>Si le tableau est déjà <em>trié dans l'ordre croissant</em>, il n'y a aucune permutation d'éléments adjacents lors du premier passage. Le booleen <code>change</code> reste à <code>False</code> et la boucle <code>while</code> externe se termine au bout du premier tour. Il y a eu <span class="math inline">\(n-1\)</span> comparaisons, il s'agit d'une <strong>complexité linéaire</strong>.</p></li>
+<li><p>Si le tableau est <em>trié dans l'ordre décroissant</em>, lors de l'itération <span class="math inline">\(k\)</span> de la boucle externe while (pour <span class="math inline">\(k\)</span> allant de 1 à <span class="math inline">\(n\)</span>), on fait remonter la plus grosse bulle non triée de la position 0 où elle est tombée après remontée des <span class="math inline">\(k-1\)</span> bulles plus grosses, jusqu'à sa position finale <span class="math inline">\(n-k\)</span>. Lors de cette remontée, <span class="math inline">\(n-k\)</span> comparaisons/permutations sont effectuées sauf pour le dernier passage. Pour <span class="math inline">\(k=1\)</span> on a <span class="math inline">\(n-1\)</span> comparaisons/permutations , pour <span class="math inline">\(k=2\)</span> on a <span class="math inline">\(n-2\)</span> comparaisons/permutations, pour <span class="math inline">\(k=n-1\)</span> on a 1 comparaison et 1 permutation, pour <span class="math inline">\(k = n\)</span> on a 1 comparaison et <span class="math inline">\(0\)</span> permutation.</p>
+<p>Au total, <span class="math inline">\(n-1 + n-2 + \cdots +1 + 1 = n(n-1)/2+1\)</span>comparaisons sont effectuées. Il s'agit donc d'une <strong>complexité quadratique</strong> dans ce cas.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+</body>
+</html>
