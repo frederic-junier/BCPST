@@ -14,6 +14,8 @@ Quelques sites internet avec des applications de simulations d'algorithmes de  t
 
 + [Algorithmes de tris sur Interstices](https://interstices.info/jcms/c_6973/les-algorithmes-de-tri)
 
++ [Une application de visualisation sans nombres](https://www.lionelavon.fr/1nsi/chapitres/tri/illustration/index.html)
+
 
 # Quelques outils de tests
 !"""
