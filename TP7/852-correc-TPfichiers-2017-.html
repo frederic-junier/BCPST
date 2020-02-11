@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="852 - M.Lalauze - M.Junier" />
+  <title>Corrigé du TP Python sur les Fichiers</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../Pandoc/style_nsi.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Corrigé du TP Python sur les Fichiers</h1>
+<p class="author">852 - M.Lalauze - M.Junier</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table des matières</h2>
+<ul>
+<li><a href="#exercice-2-lecture-du-fichier">Exercice 2 : lecture du fichier</a></li>
+<li><a href="#création-du-fichier-mesures.txt">Création du fichier mesures.txt</a></li>
+<li><a href="#extraction-masse-et-taille">Extraction masse et taille</a></li>
+<li><a href="#ajout-des-moyennes">Ajout des moyennes</a></li>
+<li><a href="#fonction-diagramme">Fonction diagramme</a></li>
+<li><a href="#création-du-fichier-mesures_lauriers.txt">Création du fichier mesures_lauriers.txt</a></li>
+<li><a href="#masse-moyenne-et-taille-des-lauriers-roses">Masse moyenne et taille des lauriers roses</a></li>
+<li><a href="#regression-linéaire">Regression linéaire</a></li>
+<li><a href="#contenu-du-fichier-regression.txt">Contenu du fichier regression.txt</a></li>
+<li><a href="#exercice-3-recherche-de-motif-dans-un-fichier-fasta">Exercice 3 : recherche de motif dans un fichier fasta</a></li>
+<li><a href="#sitographie">Sitographie</a></li>
+</ul>
+</nav>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<h1 id="exercice-2-lecture-du-fichier">Exercice 2 : lecture du fichier</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a>mes<span class="op">=</span><span class="bu">open</span>(<span class="st">&#39;mesuresBCPST.txt&#39;</span>,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="bu">print</span>(mes.readline())</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="cf">for</span> ligne <span class="kw">in</span> mes:</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="bu">print</span>(ligne)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>mes.close()</span></code></pre></div>
+<h1 id="création-du-fichier-mesures.txt">Création du fichier mesures.txt</h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2"></a>mes<span class="op">=</span><span class="bu">open</span>(<span class="st">&#39;mesuresBCPST.txt&#39;</span>,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>nmes<span class="op">=</span><span class="bu">open</span>(<span class="st">&#39;mesures.txt&#39;</span>,<span class="st">&#39;w&#39;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="cf">for</span> ligne <span class="kw">in</span> mes:</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    liste<span class="op">=</span>ligne.split(<span class="st">&#39; &#39;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="cf">if</span> <span class="bu">len</span>(liste)<span class="op">==</span><span class="dv">4</span>:</span>
+<span id="cb3-7"><a href="#cb3-7"></a>        fleur<span class="op">=</span>liste[<span class="dv">2</span>]<span class="op">+</span><span class="st">&#39; &#39;</span><span class="op">+</span>liste[<span class="dv">3</span>]</span>
+<span id="cb3-8"><a href="#cb3-8"></a>        listebis<span class="op">=</span>[liste[<span class="dv">0</span>],liste[<span class="dv">1</span>],fleur]</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        newline<span class="op">=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>.join(listebis)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-11"><a href="#cb3-11"></a>        newline<span class="op">=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>.join(ligne.split(<span class="st">&#39; &#39;</span>))</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    nmes.write(newline)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>mes.close()</span>
+<span id="cb3-14"><a href="#cb3-14"></a>nmes.close()</span></code></pre></div>
+<h1 id="extraction-masse-et-taille">Extraction masse et taille</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">def</span> lecture(fichier):</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    f<span class="op">=</span><span class="bu">open</span>(fichier,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    f.readline() <span class="co"># on saute la première ligne</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    masse<span class="op">=</span>[]</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    taille<span class="op">=</span>[]</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">for</span> ligne <span class="kw">in</span> f:</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        liste<span class="op">=</span>ligne.split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>        masse.append(<span class="bu">float</span>(liste[<span class="dv">0</span>]))</span>
+<span id="cb4-10"><a href="#cb4-10"></a>        taille.append(<span class="bu">float</span>(liste[<span class="dv">1</span>]))</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    f.close()</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="cf">return</span> masse, taille</span></code></pre></div>
+<h1 id="ajout-des-moyennes">Ajout des moyennes</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">def</span> moyenne(t):</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="co">&#39;&#39;&#39;Moyenne des éléments d&#39;un tableau de nombres&#39;&#39;&#39;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="cf">for</span> e <span class="kw">in</span> t:</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        s <span class="op">+=</span> e</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">return</span> s<span class="op">/</span><span class="bu">len</span>(t)</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>masse,taille <span class="op">=</span> lecture(<span class="st">&#39;mesures.txt&#39;</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a>m_moy <span class="op">=</span> moyenne(masse)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>t_moy <span class="op">=</span> moyenne(taille)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>mes <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;mesures.txt&#39;</span>,<span class="st">&#39;a&#39;</span>)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>mes.write(<span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="ch">\t</span><span class="sc">{:.2f}</span><span class="ch">\t</span><span class="st">Moyennes&#39;</span>.<span class="bu">format</span>(m_moy,t_moy))</span>
+<span id="cb5-14"><a href="#cb5-14"></a>mes.close()</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span></code></pre></div>
+<h1 id="fonction-diagramme">Fonction diagramme</h1>
+<p>On appellera cette fonction sur le fichier <code>mesures.txt</code> sans la ligne indiquant les moyennes !</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="im">from</span> math <span class="im">import</span> log,ceil,sqrt</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">def</span> diagramme(fichier):</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    masse,taille <span class="op">=</span> lecture(fichier)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="co">#longueur de la série</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    n <span class="op">=</span> <span class="bu">len</span>(masse)</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    plt.suptitle(fichier)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>    plt.subplot(<span class="dv">221</span>)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    plt.title(<span class="st">&#39;Histogramme des masses&#39;</span>)</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co">#nb de classes = sup(log(n,2)+1) calculé d&#39;après la regle de Sturges</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    nclasses <span class="op">=</span> ceil(log(n,<span class="dv">2</span>)<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>    plt.hist(masse,bins<span class="op">=</span>nclasses)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>    plt.subplot(<span class="dv">222</span>)</span>
+<span id="cb6-18"><a href="#cb6-18"></a>    plt.title(<span class="st">&#39;Diagramme en boite des masses&#39;</span>)</span>
+<span id="cb6-19"><a href="#cb6-19"></a>    plt.boxplot(masse)</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    plt.subplot(<span class="dv">223</span>)</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    plt.title(<span class="st">&#39;Histogramme des tailles&#39;</span>)</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    plt.hist(taille,bins<span class="op">=</span>nclasses)</span>
+<span id="cb6-23"><a href="#cb6-23"></a>    plt.subplot(<span class="dv">224</span>)</span>
+<span id="cb6-24"><a href="#cb6-24"></a>    plt.title(<span class="st">&#39;Diagramme en boite des tailles&#39;</span>)</span>
+<span id="cb6-25"><a href="#cb6-25"></a>    plt.boxplot(taille)</span>
+<span id="cb6-26"><a href="#cb6-26"></a>    plt.savefig(<span class="st">&#39;Diagrammes-</span><span class="sc">{}</span><span class="st">.png&#39;</span>.<span class="bu">format</span>(fichier.rstrip(<span class="st">&#39;.txt&#39;</span>)))</span>
+<span id="cb6-27"><a href="#cb6-27"></a>    plt.show()</span></code></pre></div>
+<hr />
+<figure>
+<img src="Diagrammes-mesures.png" alt="" /><figcaption>Diagramme</figcaption>
+</figure>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<h1 id="création-du-fichier-mesures_lauriers.txt">Création du fichier mesures_lauriers.txt</h1>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2"></a>mes <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;mesures.txt&#39;</span>,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>mesl <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;mesures_lauriers.txt&#39;</span>,<span class="st">&#39;w&#39;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="cf">for</span> ligne <span class="kw">in</span> mes:</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    liste <span class="op">=</span> ligne.strip().split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="cf">if</span> liste[<span class="dv">2</span>] <span class="op">==</span> <span class="st">&#39;laurier rose&#39;</span>:</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        mesl.write(ligne)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>mesl.close()</span>
+<span id="cb8-9"><a href="#cb8-9"></a>mes.close()</span></code></pre></div>
+<h1 id="masse-moyenne-et-taille-des-lauriers-roses">Masse moyenne et taille des lauriers roses</h1>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2"></a>lauriers <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;mesures_lauriers.txt&#39;</span>,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>masse <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>taille <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>nb_lauriers <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="cf">for</span> ligne <span class="kw">in</span> lauriers:</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    liste<span class="op">=</span>ligne.strip().split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    nb_lauriers <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>    masse <span class="op">+=</span> <span class="bu">float</span>(liste[<span class="dv">0</span>])</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    taille <span class="op">+=</span> <span class="bu">float</span>(liste[<span class="dv">1</span>])</span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="bu">print</span>(<span class="st">&#39;la masse moyenne des lauriers roses est de </span><span class="sc">{:.2f}</span><span class="st"> et leur taille moyenne de </span><span class="sc">{:.2f}</span><span class="st">&#39;</span>.<span class="bu">format</span>(masse<span class="op">/</span>nb_lauriers, taille<span class="op">/</span>nb_lauriers))</span>
+<span id="cb9-12"><a href="#cb9-12"></a>lauriers.close()</span></code></pre></div>
+<h1 id="regression-linéaire">Regression linéaire</h1>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">def</span> bilan_regression(fichier):</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="co">&#39;&#39;&#39;La procédure récupère d&#39;abord les listes dans fichier deux listes x et y de flottants de même longueur.</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">    La procédure calcule les listes x2,y2 et xy respectivement des carrés et des produits terme à terme des éléments de x et de y.</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">    Puis elle calcule la covariance  les variances  v(x) et v(y), la covariance cov(x,y), le coefficient de corrélation linéaire r(x,y), l&#39;équation de la droite de régression de y en x.</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">    Elle recopie x,y,x2,y2 et xy en colonnes séparées par des virgules </span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co">    Elle recopie les valeurs sum(x),sum(y),sum(x2),sum(y2),sum(xy) ligne par ligne dans  un fichier regression.txt.</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">    On complète ce fichier avec la moyenne en x, la moyenne en y, les écarts types en x et y, la cov(x,y), le coefficient de corrélation linéaire, et l&#39;équation de la droite de régression.</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co">    Puis elle affiche un graphique avec le nuage de points (x,y) et la droite de régression de y en x.</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co">    &#39;&#39;&#39;</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>    x,y <span class="op">=</span> lecture(fichier)</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="co"># utilisation de listes en compréhensions </span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>    n <span class="op">=</span> <span class="bu">len</span>(x)</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="co">#carrés de x</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>    x2 <span class="op">=</span> [i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> x]</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="co">#carrés de y</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>    y2 <span class="op">=</span> [j<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> j <span class="kw">in</span> y]</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="co">#moyenne de x</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a>    mx <span class="op">=</span> <span class="bu">sum</span>(x)<span class="op">/</span>n</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="co">#moyenne de y</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>    my <span class="op">=</span> <span class="bu">sum</span>(y)<span class="op">/</span>n</span>
+<span id="cb10-22"><a href="#cb10-22"></a>    <span class="co">#variance de x</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a>    vx <span class="op">=</span> <span class="bu">sum</span>(x2)<span class="op">/</span>n<span class="op">-</span>(mx)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a>    <span class="co">#variance de y</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>    vy <span class="op">=</span> <span class="bu">sum</span>(y2)<span class="op">/</span>n<span class="op">-</span>(my)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a>    <span class="co">#xy = [i*j for i,j in zip(x,y)]</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a>    xy <span class="op">=</span> [x[i]<span class="op">*</span>y[i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb10-28"><a href="#cb10-28"></a>    <span class="co">#covariance de x et y</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a>    covxy <span class="op">=</span> <span class="bu">sum</span>(xy)<span class="op">/</span>n<span class="op">-</span>mx<span class="op">*</span>my</span>
+<span id="cb10-30"><a href="#cb10-30"></a>    <span class="co">#coefficient de corrélation linéaire</span></span>
+<span id="cb10-31"><a href="#cb10-31"></a>    rxy <span class="op">=</span> covxy<span class="op">/</span>sqrt(vx<span class="op">*</span>vy)</span>
+<span id="cb10-32"><a href="#cb10-32"></a>    <span class="co">#coefficient directeur a de la droite de régression de y en x</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a>    a <span class="op">=</span> covxy<span class="op">/</span>vx</span>
+<span id="cb10-34"><a href="#cb10-34"></a>    <span class="co">#ordonnée à l&#39;origie de la droite de régression de y en x</span></span>
+<span id="cb10-35"><a href="#cb10-35"></a>    b <span class="op">=</span> my<span class="op">-</span>a<span class="op">*</span>mx</span>
+<span id="cb10-36"><a href="#cb10-36"></a>    <span class="co"># Ecriture dans le fichier regression.csv</span></span>
+<span id="cb10-37"><a href="#cb10-37"></a>    f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;regression.txt&#39;</span>,<span class="st">&#39;w&#39;</span>)</span>
+<span id="cb10-38"><a href="#cb10-38"></a>    f.write(<span class="st">&#39;Totaux</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb10-39"><a href="#cb10-39"></a>    f.write(<span class="st">&#39;sum(x) : </span><span class="sc">{:.2f}</span><span class="st">, sum(y) : </span><span class="sc">{:.2f}</span><span class="st">, sum(x^2) : </span><span class="sc">{:.2f}</span><span class="st">, sum(y^2) : </span><span class="sc">{:.2f}</span><span class="st">, sum(xy) :  </span><span class="sc">{:.2f}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(<span class="bu">sum</span>(x),<span class="bu">sum</span>(y),<span class="bu">sum</span>(x2),<span class="bu">sum</span>(y2),<span class="bu">sum</span>(xy)))</span>
+<span id="cb10-40"><a href="#cb10-40"></a>    f.write(<span class="st">&#39;Moyennes</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb10-41"><a href="#cb10-41"></a>    f.write(<span class="st">&#39;moyenne x : </span><span class="sc">{:.2f}</span><span class="st">,moyenne y </span><span class="sc">{:.2f}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(mx,my))</span>
+<span id="cb10-42"><a href="#cb10-42"></a>    f.write(<span class="st">&#39;Ecarts-types</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb10-43"><a href="#cb10-43"></a>    f.write(<span class="st">&#39;sigma x : </span><span class="sc">{:.2f}</span><span class="st">, sigma y : </span><span class="sc">{:.2f}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(sqrt(vx),sqrt(vy)))</span>
+<span id="cb10-44"><a href="#cb10-44"></a>    f.write(<span class="st">&#39;Covariance de x et de y : </span><span class="sc">{:.2f}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(covxy))</span>
+<span id="cb10-45"><a href="#cb10-45"></a>    f.write(<span class="st">&#39;Coefficient de corrélation linéaire  de x et  y : </span><span class="sc">{:.2f}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(rxy))</span>
+<span id="cb10-46"><a href="#cb10-46"></a>    f.write(<span class="st">&#39;Equation de la droite de régression de y en x : y=</span><span class="sc">{:.2f}</span><span class="st">x+</span><span class="sc">{:.2f}</span><span class="st">&#39;</span>.<span class="bu">format</span>(a,b))</span>
+<span id="cb10-47"><a href="#cb10-47"></a>    f.close()</span>
+<span id="cb10-48"><a href="#cb10-48"></a>    <span class="co"># Affichage du graphique</span></span>
+<span id="cb10-49"><a href="#cb10-49"></a>    t <span class="op">=</span> np.linspace(<span class="bu">min</span>(x),<span class="dv">5</span><span class="op">/</span><span class="dv">4</span><span class="op">*</span><span class="bu">max</span>(x)<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span><span class="op">*</span><span class="bu">min</span>(x),<span class="dv">1000</span>)</span>
+<span id="cb10-50"><a href="#cb10-50"></a>    <span class="co">#fonction affine de la droite de régression de y en x</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a>    <span class="co">#g = lambda u:a*u+b</span></span>
+<span id="cb10-52"><a href="#cb10-52"></a>    <span class="co">#z = g(t)</span></span>
+<span id="cb10-53"><a href="#cb10-53"></a>    z <span class="op">=</span> [a<span class="op">*</span>t[i]<span class="op">+</span>b <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t))]</span>
+<span id="cb10-54"><a href="#cb10-54"></a>    plt.title(<span class="st">&#39;Equation de la droite de régression linéaire : y=</span><span class="sc">{:.2f}</span><span class="st">x+</span><span class="sc">{:.2f}</span><span class="ch">\n</span><span class="st">Coefficient de corrélation linéaire : </span><span class="sc">{:.2f}</span><span class="st">&#39;</span>.<span class="bu">format</span>(a,b,rxy))</span>
+<span id="cb10-55"><a href="#cb10-55"></a>    plt.plot(x,y,<span class="st">&#39;r+&#39;</span>,markeredgewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-56"><a href="#cb10-56"></a>    plt.plot(t,z,<span class="st">&#39;b-&#39;</span>)</span>
+<span id="cb10-57"><a href="#cb10-57"></a>    plt.savefig(<span class="st">&#39;regression.png&#39;</span>)</span>
+<span id="cb10-58"><a href="#cb10-58"></a>    plt.show()</span></code></pre></div>
+<h1 id="contenu-du-fichier-regression.txt">Contenu du fichier regression.txt</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">Totaux</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">sum(x) : 312.80, sum(y) : 986.60, sum(x^2) : 1451.04, sum(y^2) : 14006.96, sum(xy) :  4470.36</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co">Moyennes</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">moyenne x : 4.41,moyenne y 13.90</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">Ecarts-types</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">sigma x : 1.01, sigma y : 2.05</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">Covariance de x et de y : 1.74</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co">Coefficient de corrélation linéaire  de x et  y : 0.84</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="co">Equation de la droite de régression de y en x : y=1.70x+6.42</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="co">&quot;&quot;&quot;</span></span></code></pre></div>
+<hr />
+<figure>
+<img src="regression.png" alt="" /><figcaption>Régression linéaire</figcaption>
+</figure>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<h1 id="exercice-3-recherche-de-motif-dans-un-fichier-fasta">Exercice 3 : recherche de motif dans un fichier fasta</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">def</span> recherche_fasta(fichier,mot,encodage<span class="op">=</span><span class="st">&#39;utf8&#39;</span>):</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="co">&#39;&#39;&#39;recherche la première occurence d&#39;un mot dans une séquence de genes ou d&#39;acides aminés  contenue dans un fichier texte au format fasta.</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">    Pour plus d&#39;infos sur le format fasta voir http://fr.wikipedia.org/wiki/FASTA_%28format_de_fichier%29.</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co">    On ne traite pas le cas des mots coupés en fin de ligne.&#39;&#39;&#39;</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    f <span class="op">=</span> <span class="bu">open</span>(fichier,<span class="st">&#39;r&#39;</span>,encoding<span class="op">=</span>encodage)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    texte <span class="op">=</span> f.read()</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    ltexte <span class="op">=</span> <span class="bu">len</span>(texte) <span class="co">#longueur du texte</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    lmot <span class="op">=</span> <span class="bu">len</span>(mot) <span class="co">#longueur du mot</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> ltexte <span class="op">-</span> lmot <span class="op">+</span> <span class="dv">1</span>:</span>
+<span id="cb13-12"><a href="#cb13-12"></a>        j <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>        <span class="cf">while</span> j <span class="op">&lt;</span> lmot <span class="kw">and</span> texte[ i <span class="op">+</span> j ] <span class="op">==</span> mot[ j ]:</span>
+<span id="cb13-14"><a href="#cb13-14"></a>            j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>        <span class="cf">if</span> j <span class="op">==</span> <span class="bu">len</span>(mot):</span>
+<span id="cb13-16"><a href="#cb13-16"></a>            <span class="cf">return</span> i</span>
+<span id="cb13-17"><a href="#cb13-17"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>    f.close()</span>
+<span id="cb13-19"><a href="#cb13-19"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a>    </span>
+<span id="cb13-21"><a href="#cb13-21"></a>fichier <span class="op">=</span> <span class="st">&#39;exemple_fasta.txt&#39;</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a>mot <span class="op">=</span> <span class="st">&#39;TCACGG&#39;</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a>res <span class="op">=</span>recherche_fasta(fichier,mot)</span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="cf">if</span> res:</span>
+<span id="cb13-25"><a href="#cb13-25"></a>    <span class="bu">print</span>(<span class="st">&quot;La première occurence du mot </span><span class="sc">{}</span><span class="st"> est en position </span><span class="sc">{}</span><span class="st"> dans le fichier </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(mot,res,fichier))</span>
+<span id="cb13-26"><a href="#cb13-26"></a>    f <span class="op">=</span> <span class="bu">open</span>(fichier,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb13-27"><a href="#cb13-27"></a>    texte <span class="op">=</span> f.read()</span>
+<span id="cb13-28"><a href="#cb13-28"></a>    l <span class="op">=</span> <span class="bu">len</span>(mot)</span>
+<span id="cb13-29"><a href="#cb13-29"></a>    <span class="bu">print</span>(texte[res:res<span class="op">+</span>l])</span>
+<span id="cb13-30"><a href="#cb13-30"></a>    f.close()</span>
+<span id="cb13-31"><a href="#cb13-31"></a><span class="cf">else</span>:</span>
+<span id="cb13-32"><a href="#cb13-32"></a>    <span class="bu">print</span>(<span class="st">&quot;Le mot </span><span class="sc">{}</span><span class="st"> n&#39;apparait pas dans le fichier </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(mot,fichier))</span>
+<span id="cb13-33"><a href="#cb13-33"></a></span></code></pre></div>
+<h1 id="sitographie">Sitographie</h1>
+<blockquote>
+<ul>
+<li><p><a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Documentation de Python</a> pour la manipulation de fichier</p></li>
+<li><p>Tutoriels sur les bibliothèques Numpy et Matplotlib pour la création de graphiques :</p>
+<ul>
+<li>Documentation officielle de <a href="http://matplotlib.org/api/pyplot_summary.html">Matplotlib.pyplot</a>.</li>
+<li><a href="http://www.labri.fr/perso/nrougier/teaching/matplotlib/">Tutoriel de Nicolas Rougier</a> pour réaliser des graphiques avec Matplotlib.</li>
+<li>Une base de connaissances pour aller plus loin : le site <a href="http://www.scipy-lectures.org/">scipy-lectures</a>.</li>
+</ul></li>
+</ul>
+</blockquote>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</body>
+</html>
