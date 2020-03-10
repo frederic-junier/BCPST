@@ -81,3 +81,12 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version pdf](TP7/852-correc-TPfichiers-2017-.pdf)
   - [corrigé version markdown html](TP7/852-correc-TPfichiers-2017-git.md)
   - [corrigé version diaporama html](TP7/852-correc-TPfichiers-2017-slidy.html)
+  
+* TP 10 Images :
+  - [énoncé version pdf](TP10_Images/10_Images_numpy.pdf)
+  - [ressources](TP10_Images/Corrige)
+  - [corrigé version python](TP10_Images/Corrige/TP_Images_2020.py)
+  - [corrigé version pdf](TP10_Images/Corrige/TP_Images_2020.pdf)
+  - [corrigé version html](TP10_Images/Corrige/TP_Images_2020.html)
+  - [corrigé version Jupyter Notebook](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP10_Images/Corrige/TP_Images_2020.ipynb)
+ 
