@@ -575,9 +575,13 @@ composantes}}{Exercice 3 Extraction de composantes}}\label{exercice-3-extraction
 \emph{Max/Min}}{Exercice 4 Max/Min}}\label{exercice-4-maxmin}}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}52}]:} \PY{k}{def} \PY{n+nf}{maxmin}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
-             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Retourne 0 si x \PYZlt{} 255, 255 si x \PYZgt{} 255 et x sinon\PYZdq{}\PYZdq{}\PYZdq{}}
-             \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{def} \PY{n+nf}{maxmin}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Retourne 0 si x \PYZlt{} 255, 255 si x \PYZgt{} 255 et x sinon\PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{maxmin2}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Retourne 0 si x \PYZlt{} 255, 255 si x \PYZgt{} 255 et x sinon\PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
