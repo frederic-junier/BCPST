@@ -40,7 +40,8 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version pdf](TP1/TP1_BCPST_852.pdf)
   - [corrigé version html](TP1/TP1_BCPST_852.html)
   - [corrigé version notebook Jupyter](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP1/TP1_BCPST_852.ipynb)
-  
+
+<!--
 * TP 2 :
   - [énoncé version pdf](TP2/03_Tests_Boucles.pdf)
   - [corrigé version python](TP2/BCPST_852_TP2.py)
@@ -90,4 +91,4 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version html](TP10_Images/Corrige/TP_Images_2020.html)
   - [corrigé version Jupyter Notebook](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP10_Images/Corrige/TP_Images_2020.ipynb)
  
- 
+ -->
