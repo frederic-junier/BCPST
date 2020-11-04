@@ -23,8 +23,9 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [Memento de Laurent Pointal](https://perso.limsi.fr/pointal/_media/python:cours:mementopython3.pdf)
   
 * Interpréteurs en ligne :
-  - [repl.it](https://repl.it/languages/python3)
-  - [Pythontutor](http://pythontutor.com/)  : permet de visualiser l'évolution des variables
+  - [repl.it](https://repl.it/languages/python3)  => nécessite de se créer un compte
+  - [basthon](https://python.infobrisson.fr/) => très bien car on peut téléverser un script, télécharger ou partager en lien et sans créer de compte !
+  - [Pythontutor](http://pythontutor.com/)  => indispensable, permet de visualiser l'évolution des variables
 
 
 ## Conférence de Judicael Courant : "Une brève histoire des langages de programmation"
@@ -49,7 +50,7 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version html](TP2/BCPST_852_TP2.html)
   - [corrigé version notebook Jupyter](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP2/BCPST_852_TP2.ipynb)
 
-<!--
+
 * TP 3 :
   - [énoncé version pdf](TP3/I05_Listes.pdf)
   - [corrigé version python](TP3/TP_Listes_852_2016-2017.py)
@@ -57,7 +58,7 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version html](TP3/TP_Listes_852_2016-2017.html)
   - [corrigé version notebook Jupyter](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP3/TP_Listes_852_2016-2017.ipynb)
 
-
+<!--
 * TP 4 :
   - [énoncé version pdf](TP4/06_Chaines.pdf)
   - [corrigé version python](TP4/852-correc-TPchaines-2016-md.py)
