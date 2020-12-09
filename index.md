@@ -66,13 +66,15 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
         *  Énoncé : <https://genumsi.inria.fr/qcm.php?h=66f6a8ff3099844f78f411bd489183ba>
         *  Corrigé : <https://genumsi.inria.fr/qcm-corrige.php?cle=MTE4OzExOTsxNDE7MTQ3OzIxNzsyNjY7Mjc2OzMwMjszMDY7MzIzOzMyNTszMjY7NDMxOzQzMjs0MzM7NDM0OzQzNTs0MzY7NDM3OzQ0MDsxMzc2>
 
-<!--
+
 * TP 4 :
   - [énoncé version pdf](TP4/06_Chaines.pdf)
+  - Visualisation de l'algorithme de motif naif : <http://whocouldthat.be/visualizing-string-matching/>
   - [corrigé version python](TP4/852-correc-TPchaines-2016-md.py)
   - [corrigé version pdf](TP4/852-correc-TPchaines-2016-md.pdf)
   - [corrigé version html](TP4/852-correc-TPchaines-2016-md.html)
-  
+ 
+ <!--
 * TP 5 :
   - [énoncé version pdf](TP5/08_Tris.pdf)
   - [corrigé version python](TP5/852-correc-TPtris-2018-md.py)
