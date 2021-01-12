@@ -74,33 +74,31 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version pdf](TP4/852-correc-TPchaines-2016-md.pdf)
   - [corrigé version html](TP4/852-correc-TPchaines-2016-md.html)
  
- <!--
+
 * TP 5 :
   - [énoncé version pdf](TP5/08_Tris.pdf)
   - [corrigé version python](TP5/852-correc-TPtris-2018-md.py)
   - [corrigé version pdf](TP5/852-correc-TPtris-2018-md.pdf)
   - [corrigé version html](TP5/852-correc-TPtris-2018-md.html)
 
+ <!--
 * TP 6 :
   - [énoncé version pdf](TP6/10_Simulations.pdf)
   - [corrigé version python](TP6/852-correc-TPSimulation-2017-md.py)
   - [corrigé version pdf](TP6/852-correc-TPSimulation-2017.pdf)
-  - [corrigé version html](TP6/852-correc-TPSimulation-2017.html)
-  
+  - [corrigé version html](TP6/852-correc-TPSimulation-2017.html)  
 * TP 7 :
   - [énoncé version pdf](TP7/TP07_Fichiers.pdf)
   - [ressources](https://github.com/frederic-junier/BCPST/tree/master/TP7/ressources)
   - [corrigé version python](TP7/852-correc-TPfichiers-2017-md.py)
   - [corrigé version pdf](TP7/852-correc-TPfichiers-2017-.pdf)
   - [corrigé version markdown html](TP7/852-correc-TPfichiers-2017-git.md)
-  - [corrigé version diaporama html](TP7/852-correc-TPfichiers-2017-slidy.html)
-  
+  - [corrigé version diaporama html](TP7/852-correc-TPfichiers-2017-slidy.html)  
 * TP 10 Images :
   - [énoncé version pdf](TP10_Images/10_Images_numpy.pdf)
   - [ressources](https://github.com/frederic-junier/BCPST/tree/master/TP10_Images/Corrige)
   - [corrigé version python](TP10_Images/Corrige/TP_Images_2020.py)
   - [corrigé version pdf](TP10_Images/Corrige/TP_Images_2020.pdf)
   - [corrigé version html](TP10_Images/Corrige/TP_Images_2020.html)
-  - [corrigé version Jupyter Notebook](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP10_Images/Corrige/TP_Images_2020.ipynb)
- 
+  - [corrigé version Jupyter Notebook](https://mybinder.org/v2/gh/frederic-junier/BCPST/master?filepath=TP10_Images/Corrige/TP_Images_2020.ipynb) 
  -->
