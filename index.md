@@ -81,7 +81,7 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version pdf](TP5/852-correc-TPtris-2018-md.pdf)
   - [corrigé version html](TP5/852-correc-TPtris-2018-md.html)
 
- <!--
+<!--
 * TP 6 :
   - [énoncé version pdf](TP6/10_Simulations.pdf)
   - [corrigé version python](TP6/852-correc-TPSimulation-2017-md.py)
