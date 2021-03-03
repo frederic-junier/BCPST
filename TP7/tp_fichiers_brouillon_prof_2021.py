@@ -13,31 +13,6 @@ def traitement_ligne(ligne, sep):
     return [ float(masse), float(taille), espece ]
     
     
-def lecture(fichier):
-    """Ouvre le fichier, Renvoie une liste de ses lignes"""
-    f = open(fichier)
-    #methode 1
-    #lecture de tout le contenu => liste de toutes les lignes
-    #methode2
-    #liste_lignes = f.readlines()
-    # liste_lignes = []
-    # for ligne in f:
-    #     liste_lignes.append(ligne)
-    #methode 3
-    f.readline()   # lecture de la ligne 1 => curseur positionné au début de la 2nde
-    # liste_lignes = [ traitement_ligne(ligne, '\t') for ligne in f ]
-    # liste_masse = [ ligne_decoupe[0]   for ligne_decoupe in liste_lignes ]
-    # liste_taille = [ ligne_decoupe[1]   for ligne_decoupe in liste_lignes ]
-    # méthode 4 : en seul parcours
-    liste_masse = []
-    liste_taille = []
-    for ligne in f:
-        masse, taille, espece = traitement_ligne(ligne, '\t') 
-        liste_masse.append(masse)
-        liste_taille.append(taille)
-    f.close()
-    return liste_masse, liste_taille
-
 
 def lecture(fichier):
     """Ouvre le fichier, Renvoie une liste de ses lignes"""
