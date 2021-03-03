@@ -74,9 +74,10 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version pdf](TP6/852-correc-TPSimulation-2017.pdf)
   - [corrigé version html](TP6/852-correc-TPSimulation-2017.html)
   
-* TP 7 :
+* TP 7 (fchiers) :
   - [énoncé version pdf](TP7/TP07_Fichiers.pdf)
   - [ressources](https://github.com/frederic-junier/BCPST/tree/master/TP7/ressources)
+  - [corrigé 2021, groupe M.Junier](TP7/tp_fichiers_brouillon.py)
   - [corrigé version python](TP7/852-correc-TPfichiers-2017-md.py)
   - [corrigé version pdf](TP7/852-correc-TPfichiers-2017-.pdf)
   - [corrigé version markdown html](TP7/852-correc-TPfichiers-2017-git.md)
