@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="852 - M.Lalauze - M.Junier" />
+  <title>Corrigé du TP Python sur la simulation</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Corrigé du TP Python sur la simulation</h1>
+  <p class="author">
+852 - M.Lalauze - M.Junier
+  </p>
+</div>
+<div class="slide section level1">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<div id="préambule" class="slide section level1">
+<h1>Préambule</h1>
+<p>Le module random de Python fournit un certain nombre de fonctions permettant de générer des nombres dits . Il s'agit de nombres générés par des méthodes déterministes mais se comportant <em>comme</em> s'ils étaient vraiment aléatoires. Ils nous permettront ici de simuler des expériences aléatoires.</p>
+<p>Nous n'utiliserons que deux des fonctions de ce module :</p>
+<ul>
+<li><code>randint(a,b)</code> renvoie un entier tiré au hasard entre <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> inclus (<span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> doivent être des entiers) ;</li>
+<li><code>random()</code> renvoie un réel tiré <em>au hasard</em> entre <span class="math inline">\(0\)</span> et <span class="math inline">\(1\)</span>. <em>Au hasard</em> signifie ici que les nombres renvoyés sont uniformément distribués sur <span class="math inline">\([0,1]\)</span> : si <span class="math inline">\(0 \leqslant a \leqslant b \leqslant 1\)</span>, la probabilité que le nombre renvoyé soit entre <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> vaut <span class="math inline">\(b - a\)</span>.</li>
+</ul>
+<p>Vous taperez donc au début de votre fichier <code>.py</code>, <code>from random import randint, random</code>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">from</span> random <span class="im">import</span> random, randint</code></pre></div>
+<p>Vous taperez également les lignes suivantes pour importer les bibliothèques graphiques.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="co">#import du module matplotlib.pyplot pour les graphiques</span>
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np</code></pre></div>
+</div>
+<div id="lancers-de-dés" class="slide section level1">
+<h1>Lancers de dés</h1>
+<h2 id="exercice-1-lancers-de-dés-partie-1">Exercice 1 Lancers de dés partie 1</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> de(nb_faces):
+    <span class="cf">return</span> randint(<span class="dv">1</span>,nb_faces)
+
+<span class="kw">def</span> frequence_de_equilibre(nb_faces, nb_exp):
+    t <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span>nb_faces  <span class="co">#t[k] contiendra le nb d&#39;occurences de la face k +1 </span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nb_exp):
+        t[de(nb_faces) <span class="op">-</span> <span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span> 
+    <span class="cf">return</span> [t[k]<span class="op">/</span>nb_exp <span class="cf">for</span> k <span class="op">in</span>  <span class="bu">range</span>(<span class="bu">len</span>(t))]
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [2]: frequence_de_equilibre(4, 10**4)</span>
+<span class="co">Out[2]: [0.2524, 0.2438, 0.2553, 0.2485]</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> grands_nombres():
+    <span class="co">&quot;&quot;&quot;Graphique du nombre moyen de lancers avant le premier 6</span>
+<span class="co">    pour tailles n d&#39;échantillon&quot;&quot;&quot;</span>
+    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+    <span class="im">import</span> numpy <span class="im">as</span> np
+    plt.xlabel(<span class="st">&#39;Faces&#39;</span>)
+    plt.ylabel(<span class="st">&#39;Fréquences&#39;</span>)
+    plt.axis([<span class="dv">0</span>,<span class="dv">7</span>,<span class="fl">0.12</span>,<span class="fl">0.19</span>])
+    plt.grid()
+    <span class="co">#plt.savefig(&#39;grandsnombres_de_equilibre.png&#39;)</span>
+    plt.title(<span class="st">&#39;Loi faible des grands nombres, dé équilibré&#39;</span>)
+    nlancers <span class="op">=</span> [<span class="dv">10</span><span class="op">**</span>i <span class="cf">for</span> i <span class="op">in</span>  [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>]]
+    couleurs <span class="op">=</span> [<span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>]
+    <span class="cf">for</span> k <span class="op">in</span> <span class="bu">range</span>(<span class="dv">3</span>):
+        freq <span class="op">=</span> frequence_de_equilibre(<span class="dv">6</span>, nlancers[k])
+        plt.plot([face <span class="cf">for</span> face <span class="op">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">7</span>)],freq,color<span class="op">=</span>couleurs[k],marker<span class="op">=</span><span class="st">&#39;^&#39;</span>, label<span class="op">=</span><span class="vs">r&#39;$</span><span class="sc">%s</span><span class="vs">$ lancers&#39;</span><span class="op">%</span>nlancers[k])
+    plt.legend(loc<span class="op">=</span><span class="st">&#39;lower center&#39;</span>)
+    plt.savefig(<span class="st">&#39;exo1-loi-grands-nombres.png&#39;</span>)
+    plt.show()
+   
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">grands_nombres()</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<div class="figure">
+<img src="exo1-loi-grands-nombres.png" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<h2 id="exercice-2-lancers-de-dés-partie-2">Exercice 2 Lancers de dés partie 2</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> premier6():
+    <span class="co">&quot;&quot;&quot;retourne le nombre de lancers jusqu&#39;à l&#39;obtention </span>
+<span class="co">    du premier 6&quot;&quot;&quot;</span>
+    compteur <span class="op">=</span> <span class="dv">1</span>
+    <span class="cf">while</span> de(<span class="dv">6</span>) <span class="op">!=</span> <span class="dv">6</span>:
+        compteur <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> compteur
+
+<span class="kw">def</span> moyenne_premier6(n):
+    <span class="co">&quot;&quot;&quot;nombre de lancers moyen jusqu&#39;à l&#39;apparition du</span>
+<span class="co">    premier 6 sur n parties&quot;&quot;&quot;</span>
+    c <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(n):
+        c <span class="op">+=</span> premier6()
+    <span class="cf">return</span> c<span class="op">/</span>n       
+    
+<span class="kw">def</span> test_exo2():
+    <span class="co">&quot;&quot;&quot;Graphique du nombre moyen de lancers avant le premier 6</span>
+<span class="co">    pour tailles n d&#39;échantillon&quot;&quot;&quot;</span>
+    nlancers <span class="op">=</span> [<span class="dv">10</span><span class="op">*</span><span class="dv">2</span><span class="op">**</span>i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">14</span>)]
+    moypremier6 <span class="op">=</span> []
+    <span class="cf">for</span> n <span class="op">in</span> nlancers:
+        moypremier6.append(moyenne_premier6(n))
+    plt.plot(nlancers,moypremier6,color<span class="op">=</span><span class="st">&#39;red&#39;</span>,marker<span class="op">=</span><span class="st">&#39;^&#39;</span>)
+    plt.ylim(<span class="bu">float</span>(<span class="bu">min</span>(moypremier6))<span class="op">-</span><span class="fl">0.2</span>,<span class="bu">float</span>(<span class="bu">max</span>(moypremier6))<span class="op">+</span><span class="fl">0.2</span>)
+    <span class="co">#échelle logarithmique sur l&#39;axe des x </span>
+    plt.xscale(<span class="st">&#39;log&#39;</span>)
+    plt.title(<span class="st">&#39;Nombre moyens de lancers avant le premier 6&#39;</span>)
+    plt.xlabel(<span class="st">&#39;Nombre de parties&#39;</span>)
+    plt.ylabel(<span class="st">&#39;Nombre moyen de lancers&#39;</span>)
+    plt.savefig(<span class="st">&#39;nbmoyenlancerspremier6.png&#39;</span>)
+    plt.show()</code></pre></div>
+<div class="figure">
+<img src="nbmoyenlancerspremier6.png" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<div id="tirages-dans-une-urne" class="slide section level1">
+<h1>Tirages dans une urne</h1>
+<h2 id="exercice-3-tirages-dans-une-urne-avec-remise">Exercice 3 Tirages dans une urne avec remise</h2>
+<p>Écrire une fonction <code>avec_remise(nb_tirees, nb_total)</code> qui simule un tirage avec remise de <code>nb_tirees</code> boules dans une urne contenant <code>nb_total</code> boules, numérotées de <span class="math inline">\(0\)</span> à <code>nb_total - 1</code>. On renverra la liste des numéros obtenus (dans l'ordre dans lequel on les a obtenus).</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> avec_remise(nb_tirees, nb_total):
+    <span class="co">&quot;&quot;&quot;nb_tirees tirages avec remise dans une urne equiprobable contenant </span>
+<span class="co">    nb_total boules, equivalent de [randint(0 , nb_total -1) for _ in range(nb_tirees)]&quot;&quot;&quot;</span>
+    res <span class="op">=</span> []
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nb_tirees):
+        res.append(randint(<span class="dv">0</span> , nb_total <span class="op">-</span><span class="dv">1</span>))
+    <span class="cf">return</span> res
+    
+<span class="kw">def</span> avec_remise2(nb_tirees, nb_total):
+    <span class="co">&quot;&quot;&quot;nb_tirees tirages avec remise dans une urne equiprobable contenant </span>
+<span class="co">    nb_total boules, equivalent de [randint(0 , nb_total -1) for _ in range(nb_tirees)]&quot;&quot;&quot;</span>
+    <span class="cf">return</span> [randint(<span class="dv">0</span> , nb_total <span class="op">-</span><span class="dv">1</span>) <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nb_tirees)]
+    
+<span class="kw">def</span> avec_remise_fausse(nb_tirees, nb_total):
+    <span class="co">&quot;&quot;&quot;Duplication du meme tirage nb_tirees fois&quot;&quot;&quot;</span>
+    <span class="cf">return</span> [randint(<span class="dv">0</span> , nb_total <span class="op">-</span><span class="dv">1</span>)]<span class="op">*</span>nb_tirees
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [18]: avec_remise(10 ,20)</span>
+<span class="co">Out[18]: [10, 10, 5, 10, 4, 16, 18, 14, 3, 15]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+<h2 id="exercice-4-tirages-dans-une-urne-sans-remise">Exercice 4 Tirages dans une urne sans remise</h2>
+<p>Écrire une fonction <code>sans_remise(nb_tirees, nb_total)</code> qui simule un tirage sans remise de <code>nb_tirees</code> boules dans une urne contenant <code>nb_total</code> boules, numérotées de <span class="math inline">\(0\)</span> à <code>nb_total - 1</code>. On renverra la liste des numéros obtenus, ou <code>&quot;impossible&quot;</code> si l'on demande de tirer plus de boules qu'il n'y en a dans l'urne.</p>
+<p>On procédera comme suit, on tiendra à jour une liste <code>urne</code> contenant les éléments présents dans l'urne. Et pour ce faire on procèdera par slicing, pour supprimer l'élément d'indice <code>k</code> on écrit : <code>urne=urne[:k]+urne[k+1:]</code></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> sans_remise0(nb_tirees, nb_total):
+    <span class="cf">if</span> nb_tirees<span class="op">&gt;</span> nb_total:
+        <span class="cf">return</span> <span class="st">&quot;Impossible&quot;</span>
+    urne <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nb_total)]
+    res <span class="op">=</span> []
+    <span class="cf">for</span> k <span class="op">in</span> <span class="bu">range</span>(nb_tirees):
+        <span class="bu">print</span>(<span class="st">&quot;Composition de l&#39;urne avant le tirage&quot;</span>, urne)
+        <span class="co">#on choisit la position de la boule tirée</span>
+        <span class="co"># dans l&#39;urne de taille nbtotal - k</span>
+        <span class="co">#k est le numero du tirage de 0 à nb_tirees -1</span>
+        pos <span class="op">=</span> randint(<span class="dv">0</span>, nb_total <span class="op">-</span><span class="dv">1</span> <span class="op">-</span> k)
+        <span class="co">#urne[pos] est la boule en position pos</span>
+        <span class="co"># res.append(urne[pos])</span>
+        <span class="co">#on supprime urne[pos] dans l&#39;urne</span>
+        <span class="co"># urne = urne[:pos] + uren[pos+1:]</span>
+        tirage <span class="op">=</span> urne.pop(pos)
+        res.append(tirage)
+    <span class="cf">return</span> urne
+        </code></pre></div>
+<p>Différence entre les méthodes de liste <code>append</code> et <code>pop</code></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [1]: t = [851, 852, 853]</span>
+
+<span class="co">In [2]: t.append(854)</span>
+
+<span class="co">In [3]: t</span>
+<span class="co">Out[3]: [851, 852, 853, 854]</span>
+
+<span class="co">In [4]: t = t.append(855)</span>
+
+<span class="co">In [5]: t</span>
+
+<span class="co">In [6]: t = [851, 852, 853]</span>
+
+<span class="co">In [7]: a = t.pop(1)</span>
+
+<span class="co">In [8]: a</span>
+<span class="co">Out[8]: 852</span>
+
+<span class="co">In [9]: t</span>
+<span class="co">Out[9]: [851, 853]</span>
+<span class="co">&quot;&quot;&quot;</span>
+    
+
+<span class="kw">def</span> sans_remise(nb_tirees, nb_total):
+    <span class="cf">if</span> nb_tirees<span class="op">&gt;</span> nb_total:
+        <span class="cf">return</span> <span class="st">&quot;Impossible&quot;</span>
+    urne <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nb_total)]
+    res <span class="op">=</span> []
+    nb_boules <span class="op">=</span> nb_total    
+    <span class="cf">for</span> k <span class="op">in</span> <span class="bu">range</span>(nb_tirees):
+        <span class="bu">print</span>(<span class="st">&quot;Composition de l&#39;urne avant le tirage&quot;</span>, urne)
+        i <span class="op">=</span> randint(<span class="dv">0</span>, nb_boules <span class="op">-</span> <span class="dv">1</span>)
+        res.append(urne[i])
+        urne <span class="op">=</span> urne[:i] <span class="op">+</span> urne[i <span class="op">+</span> <span class="dv">1</span>:]
+        nb_boules <span class="op">-=</span> <span class="dv">1</span> 
+    <span class="cf">return</span> res
+
+<span class="cf">for</span> k <span class="op">in</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span> , <span class="dv">11</span>]:
+    <span class="bu">print</span>(<span class="st">&#39;Tirages de </span><span class="sc">%s</span><span class="st"> boules dans une urne de 10 boules sans remise&#39;</span><span class="op">%</span>k)
+    <span class="bu">print</span>(sans_remise(k, <span class="dv">10</span>))
+    <span class="bu">print</span>()
+    
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [22]: (executing lines 433 to 448 of &quot;852-correc-TPsimulation-2016-md.py&quot;)</span>
+<span class="co">Tirages de 2 boules dans une urne de 10 boules sans remise</span>
+<span class="co">Composition de l&#39;urne avant le tirage [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">[0, 3]</span>
+
+<span class="co">Tirages de 5 boules dans une urne de 10 boules sans remise</span>
+<span class="co">Composition de l&#39;urne avant le tirage [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 3, 4, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [2, 3, 4, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [2, 3, 4, 6, 8, 9]</span>
+<span class="co">[0, 5, 1, 7, 9]</span>
+
+<span class="co">Tirages de 10 boules dans une urne de 10 boules sans remise</span>
+<span class="co">Composition de l&#39;urne avant le tirage [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 4, 5, 6, 7, 8, 9]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 4, 5, 6, 7, 8]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 4, 6, 7, 8]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [1, 2, 4, 6, 7]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [2, 4, 6, 7]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [2, 6, 7]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [6, 7]</span>
+<span class="co">Composition de l&#39;urne avant le tirage [6]</span>
+<span class="co">[0, 3, 9, 5, 8, 1, 4, 2, 7, 6]</span>
+
+<span class="co">Tirages de 11 boules dans une urne de 10 boules sans remise</span>
+<span class="co">Impossible</span>
+<span class="co">&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> sans_remise2(nb_tirees, nb_total):
+    <span class="co">&quot;&quot;&quot;La même mais avec la méthode pop au lieu du slicing&quot;&quot;&quot;</span>
+    <span class="cf">if</span> nb_tirees<span class="op">&gt;</span> nb_total:
+        <span class="cf">return</span> <span class="st">&quot;Impossible&quot;</span>
+    urne <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(nb_total)]
+    nb_boules <span class="op">=</span> nb_total
+    res <span class="op">=</span> []
+    <span class="cf">for</span> k <span class="op">in</span> <span class="bu">range</span>(nb_tirees):
+        <span class="bu">print</span>(<span class="st">&quot;Composition de l&#39;urne avant le tirage&quot;</span>, urne)
+        i <span class="op">=</span> randint(<span class="dv">0</span>, nb_boules <span class="op">-</span> <span class="dv">1</span>)
+        res.append(urne.pop(i))
+        nb_boules <span class="op">-=</span> <span class="dv">1</span>
+    <span class="cf">return</span> res</code></pre></div>
+<h2 id="exercice-5-tirages-avec-remise-partie-2">Exercice 5 Tirages avec remise partie 2</h2>
+<p>Écrire une fonction <code>urne(n)</code> qui simule <span class="math inline">\(n\)</span> tirages avec remise dans une urnes contenant des boules bleues, vertes et rouges avec les proportions respectives suivantes : <span class="math inline">\(\frac{1}{4},\ \frac{1}{4}\)</span> et <span class="math inline">\(\frac{1}{2}\)</span>, et qui renvoie le nombre de boules de chaque couleur obtenues.</p>
+<p>(<em>indic</em>. Pour simuler le tirage des boules, on pourra faire appel à la fonction <code>random()</code> et on rappelle ce qui a été dit en préambule sur cette fonction : si <span class="math inline">\(0 \leqslant a \leqslant b \leqslant 1\)</span>, la probabilité que le nombre renvoyé soit entre <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> vaut <span class="math inline">\(b - a\)</span>.)</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">from</span> random <span class="im">import</span> random, randint
+
+<span class="kw">def</span> urne(n):
+    <span class="co">&quot;&quot;&quot;Tirage avec remise de n boules dans une urne contenant 3 boules </span>
+<span class="co">    de proportions 0.25 0.25 et 0.5.</span>
+<span class="co">    Retourne le tableau des nombres de tirages par catégorie&quot;&quot;&quot;</span>
+    boule <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">3</span>
+    <span class="cf">for</span> k <span class="op">in</span> <span class="bu">range</span>(n):
+        de <span class="op">=</span> random()
+        <span class="cf">if</span> de <span class="op">&lt;</span> <span class="fl">0.25</span>:
+            boule[<span class="dv">0</span>] <span class="op">+=</span> <span class="dv">1</span>
+        <span class="cf">elif</span> de <span class="op">&lt;</span> <span class="fl">0.5</span>:
+            boule[<span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span>
+        <span class="cf">else</span>:
+            boule[<span class="dv">2</span>] <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> boule
+    
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [11]: [ [boule/n  for boule in urne(n)] for n in [100, 1000, 10000, 100000] ]</span>
+<span class="co">Out[11]: </span>
+<span class="co">[[0.25, 0.36, 0.39],</span>
+<span class="co"> [0.257, 0.217, 0.526],</span>
+<span class="co"> [0.2574, 0.248, 0.4946],</span>
+<span class="co"> [0.24992, 0.25246, 0.49762]]</span>
+<span class="co">&quot;&quot;&quot;</span></code></pre></div>
+</div>
+<div id="méthode-de-monte-carlo" class="slide section level1">
+<h1>Méthode de Monte-Carlo</h1>
+<h2 id="exercice-6-méthode-de-monte-carlo">Exercice 6 : Méthode de Monte-Carlo</h2>
+<ul>
+<li><p><strong>Question 1</strong> : On choisit au hasard un point M de coordonnées <span class="math inline">\((x, y )\)</span> dans <span class="math inline">\([0, 1] \times [0, 1]\)</span>.</p>
+<p>La probabilité pour qu’il appartienne au quart de disque de centre O de rayon 1 est égale au rapport entre l'aire du quart de disque <span class="math inline">\(\frac{\pi}{4}\)</span> et l'aire du carré 1. C'est donc <span class="math inline">\(\frac{\pi}{4}\)</span>.</p></li>
+<li><p><strong>Question 2</strong> :</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> monte_carlo(n):
+    <span class="co">&quot;&quot;&quot;Pour n points choisis au hasard dans [0;1]x[0;1],</span>
+<span class="co">    retourne la proportion de points appartenant au quart</span>
+<span class="co">    de disque de centre O et de rayon 1&quot;&quot;&quot;</span>
+    compteur <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(n):
+        x,y <span class="op">=</span> random(), random()
+        <span class="cf">if</span> x<span class="op">**</span><span class="dv">2</span><span class="op">+</span>y<span class="op">**</span><span class="dv">2</span><span class="op">&lt;</span><span class="dv">1</span>:
+            compteur <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> compteur<span class="op">/</span>n
+    
+<span class="kw">def</span> monte_carlobis(n):
+    <span class="co">&quot;&quot;&quot;retourne  deux listes aléatoires de taille </span>
+<span class="co">    n de flottants dans [0;1] et le nombre de points (x,y) dans</span>
+<span class="co">    le quart de disque de centre (0,0) et de rayon 1&quot;&quot;&quot;</span>
+    xliste,yliste <span class="op">=</span> [],[]
+    compteur <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(n):
+        x,y <span class="op">=</span> random(),random()
+        xliste.append(x)
+        yliste.append(y)
+        <span class="cf">if</span> x<span class="op">**</span><span class="dv">2</span><span class="op">+</span>y<span class="op">**</span><span class="dv">2</span><span class="op">&lt;</span><span class="dv">1</span>:
+            compteur <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> xliste,yliste,compteur
+
+<span class="kw">def</span> graphe_monte_carlo(n):
+    <span class="co">&quot;&quot;&quot;Représente graphiquement les points appartenant </span>
+<span class="co">    au quart de disque pour un échantillon de taille n&quot;&quot;&quot;</span>
+    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+    <span class="im">import</span> numpy <span class="im">as</span> np
+
+    <span class="co"># Tracé des points tirés au hasard</span>
+    xlist,ylist,prop <span class="op">=</span> monte_carlobis(n)
+    plt.plot(xlist,ylist,color<span class="op">=</span><span class="st">&#39;red&#39;</span>,marker<span class="op">=</span><span class="st">&#39;o&#39;</span>,markersize<span class="op">=</span><span class="fl">0.5</span>,ls<span class="op">=</span><span class="st">&#39;&#39;</span>)
+
+    <span class="co"># Tracé du quart de cercle</span>
+    x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">501</span>)
+    plt.plot(x,np.sqrt(<span class="dv">1</span><span class="op">-</span>x<span class="op">**</span><span class="dv">2</span>),color<span class="op">=</span><span class="st">&#39;blue&#39;</span>)
+
+    <span class="co"># Échelle, titre et sauvegarde</span>
+    plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)
+    plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)
+    plt.title(<span class="vs">r&quot;&quot;&quot;Nuage de </span><span class="sc">%s</span><span class="vs"> points aléatoires</span>
+<span class="vs">    Fréquence dans le demi-disque : </span><span class="sc">%.3f</span><span class="vs">  ,  $\frac{\pi}</span><span class="sc">{4}</span><span class="vs"> \approx$ </span><span class="sc">%.3f</span><span class="st">&quot;&quot;&quot;</span><span class="op">%</span>(n,prop,np.pi<span class="op">/</span><span class="dv">4</span>))
+    plt.savefig(<span class="st">&#39;nuagede</span><span class="sc">%s</span><span class="st">_points_montecarlo.png&#39;</span><span class="op">%</span>n)
+    plt.show()</code></pre></div>
+<div class="figure">
+<img src="nuagede5000_points_montecarlo.png" />
+
+</div>
+</div>
+<div id="marche-aléatoire" class="slide section level1">
+<h1>Marche aléatoire</h1>
+<h2 id="exercice-7-marche-aléatoire-dans-le-plan">Exercice 7 Marche aléatoire dans le plan</h2>
+<ul>
+<li><p><strong>Question1</strong></p>
+<p>Écrire une fonction <code>deplacement(x,y,p)</code> qui pour un réel <span class="math inline">\(p \in ]0, 1[\)</span> retourne aléatoirement :</p>
+<ul>
+<li>'droite' avec la probabilité <span class="math inline">\((1 - p)/2\)</span></li>
+<li>'gauche' avec la probabilité <span class="math inline">\((1 - p)/2\)</span></li>
+<li>'haut' avec la probabilité <span class="math inline">\(p/2\)</span></li>
+<li>'bas' avec la probabilité <span class="math inline">\(p/2\)</span></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> deplacement(x,y,p):
+    <span class="co">&quot;&quot;&quot;retourne les nouvelles coordonnées de la particule</span>
+<span class="co">    après un déplacement aléatoire élémentaire avec la parametre p&quot;&quot;&quot;</span>
+    hasard <span class="op">=</span> random() 
+    <span class="cf">if</span> hasard<span class="op">&lt;</span>p<span class="op">/</span><span class="dv">2</span>:
+        <span class="cf">return</span> x,y<span class="dv">+1</span>
+    <span class="cf">elif</span> hasard<span class="op">&lt;</span>p:
+        <span class="cf">return</span> x,y<span class="dv">-1</span>
+    <span class="cf">elif</span> hasard<span class="op">&lt;</span>(<span class="dv">1</span><span class="op">+</span>p)<span class="op">/</span><span class="dv">2</span>:
+        <span class="cf">return</span> x<span class="dv">-1</span>,y
+    <span class="cf">return</span> x<span class="dv">+1</span>,y
+
+les_deplacements <span class="op">=</span> [deplacement(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="cf">for</span> _ <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10000</span>)]
+les_effectifs <span class="op">=</span> [les_deplacements.count(d) <span class="cf">for</span> d <span class="op">in</span> [(<span class="dv">0</span>,<span class="dv">1</span>),(<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>),(<span class="dv">1</span>,<span class="dv">0</span>),(<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>)]]
+
+<span class="co">&quot;&quot;&quot;</span>
+<span class="co">In [5]: print(les_effectifs) #vérification de l&#39;équiprobabilité directionnelle si p=1/2</span>
+<span class="co">[2461, 2500, 2505, 2534]</span>
+<span class="co">&quot;&quot;&quot;</span>
+</code></pre></div>
+<ul>
+<li><p><strong>Question 2</strong></p>
+<p>Écrire une fonction <code>finpromenade(x,y,B</code> prenant en argument les coordonnées <span class="math inline">\((x,y)\)</span> de la particule et qui renvoie <code>True</code> si la particule a atteint la frontière du domaine et qui rend <code>False</code> sinon.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+
+<span class="co">#Pour les 2 fonctions proposées il est recommandé d&#39;utiliser</span>
+<span class="co">#des coordonnées entières sinon les tests d&#39;égalité risquent</span>
+<span class="co">#d&#39;etre hasardeux (les nombres réels sont représentés de façon approchée)</span>
+
+<span class="kw">def</span> finpromenade(x,y,B):
+    <span class="co">&quot;&quot;&quot;Retourne 1 si la particule a atteint le bord du domaine</span>
+<span class="co">    et 0 sinon&quot;&quot;&quot;</span>     
+    <span class="cf">if</span> x<span class="op">==</span>B <span class="op">or</span> x<span class="op">==-</span>B <span class="op">or</span> y<span class="op">==</span>B <span class="op">or</span> y<span class="op">==-</span>B:
+        <span class="cf">return</span> <span class="va">True</span>
+    <span class="cf">return</span> <span class="va">False</span>
+
+<span class="kw">def</span> finpromenade2(x,y,B):
+    <span class="co">&quot;&quot;&quot;Retourne 1 si la particule a atteint le bord du domaine</span>
+<span class="co">    et 0 sinon&quot;&quot;&quot;</span>     
+    <span class="cf">if</span> (x<span class="op">**</span><span class="dv">2</span><span class="op">-</span>B<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(y<span class="op">**</span><span class="dv">2</span><span class="op">-</span>B<span class="op">**</span><span class="dv">2</span>)<span class="op">==</span><span class="dv">0</span>:
+        <span class="cf">return</span> <span class="va">True</span>
+    <span class="cf">return</span> <span class="va">False</span> </code></pre></div>
+<ul>
+<li><p><strong>Question 3</strong></p>
+<p>Une particule est placée sur le point de coordonnées <span class="math inline">\((x,y)\)</span> dans l'enceinte.</p>
+<p>Écrire une fonction <code>longueur(x,y,p,B)</code>qui simule la promenade aléatoire de cette particule jusqu'à ce qu'elle atteigne l'une des frontières et qui calcule la longueur de cette promenade.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> longueur(x,y,p,B):
+    <span class="co">&quot;&quot;&quot;simule la promenade aléatoire d&#39;une particule</span>
+<span class="co">    initialement placée en (x,y) dans le domaine [-B;B]x[-B;B]</span>
+<span class="co">    et retourne la longueur de la promenade (de paramètre p)&quot;&quot;&quot;</span>
+    length <span class="op">=</span> <span class="dv">0</span>
+    <span class="cf">if</span> <span class="op">not</span>(<span class="op">-</span>B<span class="op">&lt;=</span>x<span class="op">&lt;=</span>B <span class="op">or</span> <span class="op">-</span>B<span class="op">&lt;=</span>y<span class="op">&lt;=</span>B):
+        <span class="cf">return</span> <span class="st">&quot;Le point initial n&#39;est pas dans le domaine&quot;</span>
+    <span class="cf">else</span>:
+        <span class="cf">while</span> <span class="op">not</span>(finpromenade(x,y,B)):
+            x,y <span class="op">=</span> deplacement(x,y,p)
+            length <span class="op">+=</span> <span class="dv">1</span>
+    <span class="cf">return</span> length
+    </code></pre></div>
+<ul>
+<li><p><strong>Question 4</strong></p>
+<p>Écrire une fonction <code>echantillon(n,p,B)</code> qui place au hasard <span class="math inline">\(n\)</span> particules dans l'enceinte et calcule la longueur moyenne de leur promenade.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> echantillon(n,p,B):
+    <span class="co">&quot;&quot;&quot;place n particules au hasard dans le domaine [-B,B]x[-B,B]</span>
+<span class="co">    ,calcule la longueur de leur promenade aléatoire de paramètre p</span>
+<span class="co">    et retourne la liste des longueurs et leur moyenne&quot;&quot;&quot;</span>
+    serie <span class="op">=</span> []
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(n):
+        serie.append(longueur(randint(<span class="op">-</span>B,B),randint(<span class="op">-</span>B,B),p,B))
+    <span class="cf">return</span> serie,<span class="bu">sum</span>(serie)<span class="op">/</span>n
+
+<span class="co">#test pour un échantillon de taille n=10 avec p=0.4 et B=50</span>
+<span class="kw">def</span> test_exo4q4(n,p,B):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    test pour un échantillon de taille n=10 avec p et B fixés</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    serie,moyenne <span class="op">=</span> echantillon(n,p,B)
+    <span class="co">#diagrammes sur un échantillon de taille n</span>
+    plt.subplot(<span class="dv">121</span>)
+    plt.title(<span class="st">&quot;&quot;&quot;Diagramme d&#39;évolution</span>
+<span class="st">    p = </span><span class="sc">%.2f</span><span class="st"> et B=</span><span class="sc">%s</span><span class="st">&quot;&quot;&quot;</span><span class="op">%</span>(p,B))
+    x <span class="op">=</span> np.arange(<span class="dv">1</span>,n<span class="dv">+1</span>,<span class="dv">1</span>)
+    plt.plot(x,serie,color<span class="op">=</span><span class="st">&#39;red&#39;</span>,marker<span class="op">=</span><span class="st">&#39;o&#39;</span>,markersize<span class="op">=</span><span class="fl">0.7</span>)
+    plt.subplot(<span class="dv">122</span>)
+    plt.title(<span class="st">&quot;&quot;&quot;Diagramme en boite, moyenne=</span><span class="sc">%s</span><span class="st">&quot;&quot;&quot;</span><span class="op">%</span>moyenne)
+    lmax <span class="op">=</span> <span class="bu">max</span>(serie)
+    plt.boxplot(serie,vert<span class="op">=</span><span class="va">True</span>)
+    plt.ylim(<span class="op">-</span><span class="dv">100</span>,lmax<span class="dv">+100</span>)
+    plt.yticks(np.arange(<span class="op">-</span><span class="dv">100</span>,lmax<span class="dv">+100</span>,<span class="dv">1000</span>))
+    <span class="co">#plt.yticks(np.arange(-100,lmax+100,100))</span>
+    plt.savefig(<span class="st">&#39;promenadealeatoire_echantillon_taille</span><span class="sc">%s</span><span class="st">.png&#39;</span><span class="op">%</span>n)
+    plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.3</span>)
+    plt.show()
+    </code></pre></div>
+<div class="figure">
+<img src="promenadealeatoire_echantillon_taille100.png" />
+
+</div>
+<ul>
+<li><p><strong>Question 5</strong></p>
+<p>Copier/Coller le bout de code permettant de représenter graphiquement le chemin suivi par une particule.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="kw">def</span> trace_chemin(p,B):
+    <span class="co">&quot;&quot;&quot;Trace la promenade aléatoire de paramètre p </span>
+<span class="co">    d&#39;une particule dans le domaine [-B,B]x[-B,B]&quot;&quot;&quot;</span>
+    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+    <span class="co">#choix aléatoire du point de départ</span>
+    x,y <span class="op">=</span> <span class="dv">0</span>,<span class="dv">0</span>
+    <span class="cf">if</span> <span class="op">not</span>(<span class="op">-</span>B<span class="op">&lt;=</span>x<span class="op">&lt;=</span>B <span class="op">or</span> <span class="op">-</span>B<span class="op">&lt;=</span>y<span class="op">&lt;=</span>B):
+        <span class="cf">return</span> <span class="st">&quot;Le point initial n&#39;est pas dans le domaine&quot;</span>
+    <span class="cf">else</span>:
+        <span class="co">#tableau des abscisses et ordonnées successives</span>
+        tabx,taby <span class="op">=</span> [],[]
+        <span class="cf">while</span> <span class="op">not</span>(finpromenade(x,y,B)):
+            x,y <span class="op">=</span> deplacement(x,y,p)
+            tabx.append(x)
+            taby.append(y)
+        plt.title(<span class="vs">r&quot;Promenade aléatoire de paramètre </span><span class="sc">%s</span><span class="vs">&quot;</span> <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span><span class="op">%</span>p <span class="op">+</span><span class="vs">r&quot;dans le domaine [-</span><span class="sc">%s</span><span class="vs">;</span><span class="sc">%s</span><span class="vs">]&quot;</span><span class="op">%</span>(B,B) <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="op">+</span> <span class="vs">r&quot;à partir de la position (0,0)&quot;</span>, fontsize<span class="op">=</span><span class="dv">20</span>)   
+        plt.scatter(tabx, taby, c<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(tabx)))
+        plt.colorbar()
+        plt.xlim(<span class="op">-</span>B,B)
+        plt.ylim(<span class="op">-</span>B,B)
+        plt.savefig(<span class="st">&#39;promenade-p=</span><span class="sc">%s</span><span class="st">.png&#39;</span><span class="op">%</span><span class="bu">str</span>(p).replace(<span class="st">&#39;.&#39;</span>,<span class="st">&#39;,&#39;</span>))
+        <span class="co">#plt.show()</span>
+        plt.clf()
+        
+</code></pre></div>
+</div>
+<div id="quelques-promenades" class="slide section level1">
+<h1>Quelques promenades</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+n, B <span class="op">=</span> <span class="dv">10</span>, <span class="dv">40</span>
+parametres <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">11</span>)
+<span class="cf">for</span> p <span class="op">in</span> parametres:
+    trace_chemin(p,B)
+    </code></pre></div>
+\newpage
+<div class="figure">
+<img src="promenade-p=0,0.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,1.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,2.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,3.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,4.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,5.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,6.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,7.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,8.png" />
+
+</div>
+<div class="figure">
+<img src="promenade-p=0,9.png" />
+
+</div>
+<p><img src="promenade-p=1,0.png" /> &quot;&quot;&quot;</p>
+<p><sub>~</sub></p>
+</div>
+</body>
+</html>
