@@ -91,7 +91,7 @@ Pour accéder aux Notebook Jupyter (fichiers d'extension `ipynb`) du dépôt en 
   - [corrigé version markdown html](TP7/852-correc-TPfichiers-2017-git.md)
   - [corrigé version diaporama html](TP7/852-correc-TPfichiers-2017-slidy.html)  
 
-* Dernier TP (images) :
+* Dernier TP (simulation) :
   - 
   - [Activité Capytale](https://capytale2.ac-paris.fr/web/c-auth/list?returnto=/web/code/0d07-19807)
   - [Animation Marche aléatoire auto-évitante](TPSimulation/marche.mp4)
